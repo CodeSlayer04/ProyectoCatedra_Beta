@@ -25,9 +25,10 @@ verificarRol(['admin']);
         <h1>Gestión de Productos</h1>
         <nav>
             <a href="dashboard.php">Inicio</a>
+            <a href="vender.php">Registrar compra</a>
             <a href="productos.php">Gestionar productos</a>
-            <a href="productos.php">Informes de venta</a>
-            <a href="categorias.php">Gestionar usuarios</a>
+            <a href="ventas.php">Informes de venta</a>
+            <a href="usuarios.php">Gestionar usuarios</a>
             <button id="btnLogout" type="button">Cerrar Sesión</button>
         </nav>
     </header>

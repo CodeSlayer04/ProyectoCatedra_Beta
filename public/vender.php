@@ -8,7 +8,7 @@ if (!isset($_SESSION['usuario'])) {
     exit;
 }
 
-verificarRol(['admin']);
+verificarRol(['admin', 'empleado']);
 ?>
 
 <!DOCTYPE html>
@@ -16,13 +16,13 @@ verificarRol(['admin']);
 
 <head>
     <meta charset="UTF-8">
-    <title>Dashboard - Variedades Escobar</title>
+    <title>Atender compra</title>
     <link rel="stylesheet" href="css/dashboard.css">
 </head>
 
 <body>
     <header>
-        <h1>Variedades Escobar</h1>
+        <h1>Registrar venta</h1>
         <nav>
             <a href="dashboard.php">Inicio</a>
             <a href="vender.php">Registrar compra</a>
@@ -32,27 +32,16 @@ verificarRol(['admin']);
             <button id="btnLogout" type="button">Cerrar Sesión</button>
         </nav>
     </header>
+
     <main>
 
         <div class="card">
-            <h2 id="bienvenida">Cargando...</h2>
-            <p id="rol"></p>
-
+            <h2>Productos registrados</h2>
+            <div id="lista-productos">Cargando...</div>
         </div>
-
-        <div class="card">
-            <h2>Panel de administración</h2>
-            <button>Gestionar productos</button>
-        </div>
-
     </main>
-    <footer>
-        <p>&copy; 2025 Variedades Escobar</p>
-    </footer>
 
-    <script src="js/dashboard.js"></script>
     <script src="js/verificarSesion.js"></script>
-    <script src="js/logout.js"></script>
 </body>
 
 </html>
