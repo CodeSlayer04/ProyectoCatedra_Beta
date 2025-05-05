@@ -44,6 +44,7 @@ verificarRol(['admin']);
 
 
     <script src="js/verificarSesion.js"></script>
+    <script src="js/logout.js"></script>
 </body>
 
 </html>

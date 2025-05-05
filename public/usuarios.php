@@ -39,18 +39,30 @@ verificarRol(['admin']);
         <div class="card">
             <h2>Agregar nuevo usuario</h2>
             <form id="form-usuarios-create">
-
+                <input type="text" name="usuario" id="usuario" placeholder="Nombre de usuario" required>
+                <input type="text" id="nombre" name="nombre" placeholder="Nombres y Apellidos" required>
+                <input type="email" id="correo" name="correo" placeholder="Correo electrónico" required>
+                <input type="password" id="contrasena" name="contrasena" placeholder="Contraseña" required>
+                <button id="btnMostrarContra" type="button">Mostrar 👁️</button>
+                <label for="rol">Rol: </label>
+                <select id="rol" name="rol" required>
+                    <option value="admin">Administrador</option>
+                    <option value="empleado">Operador de caja</option>
+                </select>
+                <button type="submit">Crear</button>
             </form>
         </div>
 
         <div class="card">
             <h2>Usuarios registrados</h2>
-            <div id="lista-productos">Cargando...</div>
+            <div id="lista-usuarios">Cargando...</div>
         </div>
     </main>
 
 
     <script src="js/verificarSesion.js"></script>
+    <script src="js/logout.js"></script>
+    <script src="js/usuarios.js"></script>
 </body>
 
 </html>

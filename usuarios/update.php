@@ -2,31 +2,50 @@
 header("Content-Type: application/json");
 require_once("../config/conexion.php");
 
-$data = json_decode(file_get_contents("php://input"), true);
+//$_POST = json_decode(file_get_contents("php://input"), true);
 
 if (
-    isset($data['id']) &&
-    !empty($data['usuario']) &&
-    !empty($data['nombre']) &&
-    !empty($data['correo']) &&
-    !empty($data['rol'])
+    isset($_POST['id']) &&
+    !empty($_POST['usuario']) &&
+    !empty($_POST['nombre']) &&
+    !empty($_POST['correo']) &&
+    !empty($_POST['rol'])
 ) {
     $database = new Database();
     $db = $database->getConnection();
 
-    $query = "UPDATE usuarios SET
-                usuario = :usuario,
-                nombre = :nombre,
-                correo = :correo,
-                rol = :rol
-              WHERE id = :id";
-    $stmt = $db->prepare($query);
+    // Verifica si se envió una nueva contraseña
+    if (!empty($_POST['contrasena'])) {
+        $contrasenaHasheada = password_hash($_POST['contrasena'], PASSWORD_DEFAULT);
 
-    $stmt->bindParam(":usuario", $data['usuario']);
-    $stmt->bindParam(":nombre", $data['nombre']);
-    $stmt->bindParam(":correo", $data['correo']);
-    $stmt->bindParam(":rol", $data['rol']);
-    $stmt->bindParam(":id", $data['id']);
+        $query = "UPDATE usuarios SET
+                    usuario = :usuario,
+                    nombre = :nombre,
+                    correo = :correo,
+                    contrasena = :contrasena,
+                    rol = :rol
+                  WHERE id = :id";
+
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(":contrasena", $contrasenaHasheada);
+
+    } else {
+        // No actualizar contraseña
+        $query = "UPDATE usuarios SET
+                    usuario = :usuario,
+                    nombre = :nombre,
+                    correo = :correo,
+                    rol = :rol
+                  WHERE id = :id";
+
+        $stmt = $db->prepare($query);
+    }
+
+    $stmt->bindParam(":usuario", $_POST['usuario']);
+    $stmt->bindParam(":nombre", $_POST['nombre']);
+    $stmt->bindParam(":correo", $_POST['correo']);
+    $stmt->bindParam(":rol", $_POST['rol']);
+    $stmt->bindParam(":id", $_POST['id']);
 
     if ($stmt->execute()) {
         echo json_encode(["mensaje" => "Usuario actualizado correctamente."]);
