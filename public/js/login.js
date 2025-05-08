@@ -1,3 +1,5 @@
+let RolUsuario = null;
+
 window.addEventListener('pageshow', (event) => {
     // Solo si es una navegación de tipo back/forward
     if (event.persisted || performance.getEntriesByType("navigation")[0].type === "back_forward") {
@@ -55,6 +57,8 @@ async function verificarSesion() {
     const response = await fetch('../auth/session.php');
     const data = await response.json();
 
+    RolUsuario = data.usuario.rol;
+
     if (data.usuario) {
         document.getElementById('formulario-login').style.display = 'none';
         document.getElementById('mensaje').style.display = 'none';
@@ -70,28 +74,6 @@ async function verificarSesion() {
     }
 }
 
-/* async function login() {
-    const usuario = document.getElementById("usuario").value;
-    const contrasena = document.getElementById("contrasena").value;
-    const mensaje = document.getElementById('mensaje');
-
-    const response = await fetch('../auth/login.php', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ usuario, contrasena })
-    });
-
-    const data = await response.json();
-
-    if (data.usuario) {
-        mensaje.style.color = 'green';
-        mensaje.innerText = 'Bienvenido, ' + data.usuario.nombre;
-        window.location.href = "dashboard.php";
-    } else {
-        mensaje.style.color = 'red';
-        mensaje.innerText = data.error || 'Ops, parece que ha ocurrido un error';
-    }
-} */
 
 async function logout() {
     await fetch('../auth/logout.php');
@@ -99,6 +81,14 @@ async function logout() {
 }
 
 async function cancel() {
-    window.location.href = "dashboard.php";
+
+    if (RolUsuario === 'admin') {
+        window.location.href = "dashboard.php";
+    }
+    else {
+        window.location.href = "dashboardEmpleado.php";
+    }
+
+
 }
 
