@@ -8,7 +8,7 @@ if (!isset($_SESSION['usuario'])) {
     exit;
 }
 
-verificarRol(['admin', 'empleado']);
+verificarRol(['admin']);
 ?>
 
 <!DOCTYPE html>
@@ -36,13 +36,29 @@ verificarRol(['admin', 'empleado']);
     <main>
 
         <div class="card">
+            <h2>Carrito de compras</h2>
+            <div id="carrito-lista"></div>
+            <p><strong>Total: $<span id="total">0.00</span></strong></p>
+            <label for="metodo_pago">Método de pago:</label>
+            <select id="metodo_pago">
+                <option value="efectivo">Efectivo</option>
+                <option value="tarjeta">Tarjeta</option>
+                <option value="transferencia">Transferencia</option>
+                <option value="otro">Otro</option>
+            </select>
+            <br><br>
+            <button id="btnFinalizarVenta">Finalizar Venta</button>
+        </div>
+
+        <div class="card">
             <h2>Productos registrados</h2>
             <div id="lista-productos">Cargando...</div>
         </div>
     </main>
 
-    <script src="js/verificarSesion.js"></script>
+    <!--<script src="js/verificarSesion.js"></script>-->
     <script src="js/logout.js"></script>
+    <script src="js/vender.js"></script>
 </body>
 
 </html>
