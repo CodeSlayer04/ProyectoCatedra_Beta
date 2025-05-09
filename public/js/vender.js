@@ -40,6 +40,8 @@ async function cargarProductos() {
                 <h3>${prod.nombre}</h3>
                 <p><strong>Precio Venta:</strong> $${prod.precio_venta}</p>
                 <p><strong>Disponibles:</strong> ${prod.stock}</p>
+                ${prod.imagen ? `<img src="imagenes/${prod.imagen}" alt="${prod.nombre}" width="100">` : ''}
+                <br>
                 <input type='number' min='1' max='${prod.stock}' placeholder='Cantidad' id='cantidad-${prod.id}' value='1' step='1'>
                 <button onclick='agregarAlCarrito(${JSON.stringify(prod).replace(/'/g, "\\'")})'>Agregar al carrito</button>
             `;
