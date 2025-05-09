@@ -52,7 +52,11 @@ if (
 
         // Confirmar transacción
         $db->commit();
-        echo json_encode(["mensaje" => "Venta registrada correctamente."]);
+        echo json_encode([
+            "mensaje" => "Venta registrada correctamente.",
+            "id" => $venta_id
+        ]);
+
 
     } catch (Exception $e) {
         $db->rollBack();

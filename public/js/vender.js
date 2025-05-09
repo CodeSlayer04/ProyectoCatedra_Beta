@@ -133,8 +133,14 @@ async function finalizarVenta() {
 
         if (data.mensaje) {
             alert(data.mensaje);
+            //Aqui se crea el ARCHIVO PDF USANDO LA LIBRERIA DomPDF    
+            if (data.id) {
+                window.open(`/proyectocatedra_beta/ventas/generar_factura.php?id=${data.id}`, '_blank');
+            }
+
             carrito = [];
             actualizarCarrito();
+
         } else {
             alert("Error al registrar la venta: " + (data.error || "Desconocido"));
         }

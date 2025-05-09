@@ -16,13 +16,13 @@ verificarRol(['admin']);
 
 <head>
     <meta charset="UTF-8">
-    <title>Informes de ventas</title>
+    <title>Historial de ventas</title>
     <link rel="stylesheet" href="css/dashboard.css">
 </head>
 
 <body>
     <header>
-        <h1>Informes de ventas</h1>
+        <h1>Historial de ventas</h1>
         <nav>
             <a href="dashboard.php">Inicio</a>
             <a href="vender.php">Registrar compra</a>
@@ -35,16 +35,40 @@ verificarRol(['admin']);
 
     <main>
 
+        <h2>Filtrar ventas</h2>
+        <form id="filtroForm">
+            <label for="fecha_inicio">Desde:</label>
+            <input type="date" id="fecha_inicio" name="fecha_inicio">
 
-        <div class="card">
-            <h2>Ventas registradas</h2>
-            <div id="lista-ventas">Cargando...</div>
+            <label for="fecha_fin">Hasta:</label>
+            <input type="date" id="fecha_fin" name="fecha_fin">
+
+            <label for="usuario">Usuario:</label>
+            <input type="text" id="usuario" name="usuario" placeholder="Nombre del usuario">
+
+            <label for="metodo_pago">Método de pago:</label>
+            <select id="metodo_pago" name="metodo_pago">
+                <option value="">Todos</option>
+                <option value="efectivo">Efectivo</option>
+                <option value="tarjeta">Tarjeta</option>
+                <option value="transferencia">Transferencia</option>
+            </select>
+
+            <button type="submit">Aplicar filtros</button>
+        </form>
+
+        <hr>
+
+        <div class="card" style="max-width: 1000px">
+            <h2>Listado de ventas realizadas</h2>
+            <div id="historial-ventas">Cargando ventas...</div>
         </div>
     </main>
 
 
     <script src="js/verificarSesion.js"></script>
     <script src="js/logout.js"></script>
+    <script src="js/ventas.js"></script>
 </body>
 
 </html>
