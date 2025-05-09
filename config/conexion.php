@@ -3,8 +3,8 @@ class Database
 {
     private $host = "localhost";
     private $db_name = "minisuperVariedadesEscobar";
-    private $username = "root";  // Cambiar si es necesario
-    private $password = "";
+    private $username = "wilfredo";  // Cambiar si es necesario
+    private $password = "wilfredo3026";
     public $conn;
 
     public function getConnection()

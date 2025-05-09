@@ -40,6 +40,45 @@ async function cargarCategorias() {
     }
 }
 
+// async function cargarProductos() {
+//     try {
+//         const response = await fetch("../productos/read.php");
+//         const data = await response.json();
+
+//         const contenedor = document.getElementById("lista-productos");
+//         contenedor.innerHTML = "";
+
+//         if (data.length === 0) {
+//             contenedor.innerHTML = "<p>No hay productos registrados.</p>";
+//             return;
+//         }
+
+//         data.forEach(prod => {
+//             const card = document.createElement("div");
+//             card.classList.add("card-producto");
+
+//             const imagen = prod.imagen ? `imagenes/${prod.imagen}` : "https://via.placeholder.com/100";
+
+//             card.innerHTML = `
+//                 <img src="${imagen}" alt="${prod.nombre}">
+//                 <div class="contenido">
+//                     <h3>${prod.nombre}</h3>
+//                     <p><strong>SKU:</strong> ${prod.sku}</p>
+//                     <p><strong>Stock:</strong> ${prod.stock}</p>
+//                     <p><strong>Precio:</strong> $${prod.precio_venta}</p>
+//                     <div class="botones">
+//                         <button onclick="editarProducto(${prod.id})">Modificar</button>
+//                         <button onclick="alert('Stock actual: ${prod.stock}')">Cantidad</button>
+//                     </div>
+//                 </div>
+//             `;
+//             contenedor.appendChild(card);
+//         });
+//     } catch (error) {
+//         console.error("Error cargando productos:", error);
+//     }
+// }
+
 async function cargarProductos() {
     try {
         const response = await fetch("../productos/read.php");
@@ -54,29 +93,34 @@ async function cargarProductos() {
         }
 
         data.forEach(prod => {
-            const div = document.createElement("div");
-            div.classList.add("producto");
+            const tarjeta = document.createElement("div");
+            tarjeta.classList.add("producto");
 
-            div.innerHTML = `
-                <h3>${prod.nombre}</h3>
+            tarjeta.innerHTML = `
+            <center>
+                <h2>${prod.nombre}</h2>
                 <p><strong>Descripción:</strong> ${prod.descripcion}</p>
                 <p><strong>SKU:</strong> ${prod.sku}</p>
                 <p><strong>Precio Compra:</strong> $${prod.precio_compra}</p>
                 <p><strong>Precio Venta:</strong> $${prod.precio_venta}</p>
                 <p><strong>Stock:</strong> ${prod.stock}</p>
                 <p><strong>Categoría:</strong> ${prod.categoria_nombre || 'Sin categoría'}</p>
-                <p><strong>Caduca:</strong> ${(prod.fecha_caducidad === '0000-00-00') ? 'N/A' : prod.fecha_caducidad}</p>
+                <p><strong>Caduca:</strong> ${prod.fecha_caducidad === '0000-00-00' ? 'N/A' : prod.fecha_caducidad}</p>
                 ${prod.imagen ? `<img src="imagenes/${prod.imagen}" alt="${prod.nombre}" width="100">` : ''}
-                <br>
-                <button onclick="editarProducto(${prod.id})">Editar</button>
-                <button onclick="eliminarProducto(${prod.id})">Eliminar</button>
+                <div style="margin-top: 10px;">
+                    <button onclick="editarProducto(${prod.id})">Editar</button>
+                    <button onclick="eliminarProducto(${prod.id})">Eliminar</button>
+                </div>
+            </center>
             `;
-            contenedor.appendChild(div);
+
+            contenedor.appendChild(tarjeta);
         });
     } catch (error) {
         console.error("Error cargando productos:", error);
     }
 }
+
 
 
 async function crearCategoria(e) {
