@@ -137,7 +137,7 @@ async function finalizarVenta() {
             alert(data.mensaje);
             //Aqui se crea el ARCHIVO PDF USANDO LA LIBRERIA DomPDF    
             if (data.id) {
-                window.open(`/proyectocatedra_beta/ventas/generar_factura.php?id=${data.id}`, '_blank');
+                window.open(`../ventas/generar_factura.php?id=${data.id}`, '_blank');
             }
 
             carrito = [];
