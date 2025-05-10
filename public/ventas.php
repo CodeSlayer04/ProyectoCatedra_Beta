@@ -18,6 +18,7 @@ verificarRol(['admin']);
     <meta charset="UTF-8">
     <title>Historial de ventas</title>
     <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/ventas.css">
 </head>
 
 <body>
@@ -58,10 +59,27 @@ verificarRol(['admin']);
         </form>
 
         <hr>
+<div class="card">
+  <h2 class="titulo-ventas">Listado de ventas realizadas</h2>
 
-        <div class="card" style="max-width: 1000px">
-            <h2>Listado de ventas realizadas</h2>
-            <div id="historial-ventas">Cargando ventas...</div>
+  <div class="carrusel-wrapper">
+    <button class="carrusel-btn prev-btn">‹</button>
+    
+    <div class="venta-carrusel">
+      <div id="venta-slides" class="venta-slides">
+        <!-- Aquí se insertan las tarjetas desde JS -->
+      </div>
+    </div>
+    
+    <button class="carrusel-btn next-btn">›</button>
+  </div>
+</div>
+
+
+</div>
+
+<!-- Sidebar fuera de la tarjeta -->
+<div id="sidebar-detalles" class="sidebar"></div>
         </div>
     </main>
 
