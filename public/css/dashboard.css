@@ -2,6 +2,8 @@ body {
     font-family: Arial, sans-serif;
     background-color: #eaeaea;
     padding: 2rem;
+    margin: 0;
+    padding: 0;
 }
 
 /* Estilos del encabezado */
@@ -12,6 +14,10 @@ header {
     text-align: center;
     margin: 0;
     padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: #0b3d0b;
 }
 
 header h1 {

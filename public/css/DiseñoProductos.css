@@ -1,8 +1,10 @@
-body {
+body, html {
     font-family: 'Segoe UI', sans-serif;
     background-color: #f2f2f2;
     margin: 0;
     padding: 0;
+    height: 100%;
+    overflow: hidden; /* Evita scroll en toda la página */
 }
 
 .container {
@@ -10,17 +12,25 @@ body {
     gap: 2rem;
     padding: 2rem;
     flex-wrap: wrap;
+    height: calc(100vh - 150px); /* Ajusta según la altura de tu header */
+    overflow: hidden;
 }
 
 .left-column {
     flex: 2;
+    overflow-y: auto;
+    height: 100%;
+    padding-right: 1rem;
 }
 
 .right-column {
     flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
+    position: sticky;
+    top: 0;
+    align-self: flex-start;
+    height: calc(100vh - 150px); /* Ajusta según la altura de tu header */
+    overflow-y: auto;
+    padding-right: 1rem;
 }
 
 .card-productos {
