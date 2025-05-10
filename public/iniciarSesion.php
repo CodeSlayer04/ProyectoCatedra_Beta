@@ -8,6 +8,16 @@
 </head>
 
 <body>
+
+<nav></nav>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <header>
+     <center> <h1 class="titulo">Variedades Escobar</h1></center>
+    </header>
     <div class="card" id="login-container">
         <h2>Iniciar Sesión</h2>
         <div id="alerta"></div>
