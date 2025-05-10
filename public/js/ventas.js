@@ -168,14 +168,18 @@ let html = `
         `).join('')}
     </ul>
     <div style="text-align: center; margin-top: 30px;">
-        <button onclick="imprimirSidebar()" style="padding: 10px 20px; background-color: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer;">
-            🖨️ Imprimir
+        <button onclick="imprimirSidebar(${venta.id})" style="padding: 10px 20px; background-color: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer;">
+             Imprimir
         </button>
     </div>
 `;
 
     sidebar.innerHTML = html;
     sidebar.classList.add('visible');
+}
+
+function imprimirSidebar(idVenta){
+     window.open(`../ventas/generar_factura.php?id=${idVenta}`, '_blank');
 }
 
 function cerrarSidebar() {
