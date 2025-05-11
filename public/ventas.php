@@ -54,13 +54,15 @@ verificarRol(['admin']);
                 <option value="tarjeta">Tarjeta</option>
                 <option value="transferencia">Transferencia</option>
             </select>
+            <label for="venta_id">ID:</label>
+           <input type="number" id="venta_id" name="venta_id" placeholder="ID de venta">
 
             <button type="submit">Aplicar filtros</button>
         </form>
 
         <hr>
 <div class="detalle-card">
-  <h2 class="titulo-ventas">Listado de ventas realizadas</h2>
+  <h2 id="titulo-ventas">Listado de ventas realizadas</h2>
   <div id="venta-slides">
   </div>
   <div id="historial-ventas" style="margin-top: 1rem; color: red;">
