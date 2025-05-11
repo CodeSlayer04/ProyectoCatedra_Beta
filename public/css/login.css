@@ -60,16 +60,16 @@ button:hover {
 
 .btnAzul {
     padding: 0.6rem 1.2rem;
-    background-color: #007bff;
+   background-color: #003300;
     color: white;
     border: none;
-    border-radius: 4px;
+      border-radius: 20px;
     cursor: pointer;
     margin-top: 1rem;
 }
 
 .btnAzul:hover {
-    background-color: #005cbe;
+    background-color: #005000;
 }
 nav{
     background-color: #005000;

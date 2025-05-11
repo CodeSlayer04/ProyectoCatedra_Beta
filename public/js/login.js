@@ -63,6 +63,7 @@ async function verificarSesion() {
         document.getElementById('formulario-login').style.display = 'none';
         document.getElementById('mensaje').style.display = 'none';
         document.getElementById('alerta').innerHTML = `
+        
   <div class="alert">
     Actualmente ha iniciado sesión como <strong>${data.usuario.nombre}</strong>.<br>
     Necesita cerrar sesión antes de iniciar con un usuario diferente.
