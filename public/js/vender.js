@@ -36,16 +36,17 @@ async function cargarProductos() {
             const div = document.createElement("div");
             div.classList.add("producto");
 
-            div.innerHTML = `
-                <h3>${prod.nombre}</h3>
-                <p><strong>Precio Venta:</strong> $${prod.precio_venta}</p>
-                <p><strong>Disponibles:</strong> ${prod.stock}</p>
-                ${prod.imagen ? `<img src="imagenes/${prod.imagen}" alt="${prod.nombre}" width="100">` : ''}
-                <br>
-                <input type='number' min='1' max='${prod.stock}' placeholder='Cantidad' id='cantidad-${prod.id}' value='1' step='1'>
-                <button onclick='agregarAlCarrito(${JSON.stringify(prod).replace(/'/g, "\\'")})'>Agregar al carrito</button>
-            `;
-
+  div.innerHTML = `
+    <h3>${prod.nombre}</h3>
+    <p><strong>Precio Venta:</strong> $${prod.precio_venta}</p>
+    <p><strong>Disponibles:</strong> ${prod.stock}</p>
+    ${prod.imagen ? `<img src="imagenes/${prod.imagen}" alt="${prod.nombre}" width="100">` : ''}
+    <br>
+    ${prod.stock > 0 ? `
+        <input type='number' min='1' max='${prod.stock}' placeholder='Cantidad' id='cantidad-${prod.id}' value='1' step='1'>
+        <button onclick='agregarAlCarrito(${JSON.stringify(prod).replace(/'/g, "\\'")})'>Agregar al carrito</button>
+    ` : `<p style="color:red;"><strong>Sin stock disponible</strong></p>`}
+`;
             contenedor.appendChild(div);
         });
     } catch (error) {
@@ -142,6 +143,7 @@ async function finalizarVenta() {
 
             carrito = [];
             actualizarCarrito();
+            cargarProductos();
 
         } else {
             alert("Error al registrar la venta: " + (data.error || "Desconocido"));
@@ -150,3 +152,57 @@ async function finalizarVenta() {
         console.error("Error al finalizar venta:", error);
     }
 }
+
+async function finalizarVenta() {
+    if (carrito.length === 0) {
+        alert("El carrito está vacío.");
+        return;
+    }
+
+    const metodo_pago = document.getElementById("metodo_pago").value;
+
+    const detalles = carrito.map(item => ({
+        producto_id: item.id,
+        cantidad: item.cantidad,
+        precio_unitario: item.precio_unitario,
+        subtotal: item.cantidad * item.precio_unitario
+    }));
+
+    const total = detalles.reduce((sum, d) => sum + d.subtotal, 0);
+
+    const formData = new FormData();
+    formData.append("usuario_id", idUsuario);
+    formData.append("total", total);
+    formData.append("metodo_pago", metodo_pago);
+    formData.append("detalle", JSON.stringify(detalles));
+
+    try {
+        const response = await fetch("../ventas/create.php", {
+            method: "POST",
+            body: formData
+        });
+        const data = await response.json();
+
+        if (data.mensaje) {
+            alert(data.mensaje);
+            if (data.id) {
+                window.open(`../ventas/generar_factura.php?id=${data.id}`, '_blank');
+            }
+
+            carrito = [];
+            actualizarCarrito();
+            cargarProductos(); // Recarga los productos con el stock actualizado
+
+            // Aquí agregamos la línea para refrescar la página
+            location.reload(); // Esto recargará la página después de finalizar la venta
+        } else if (data.error) {
+            alert("Error: " + data.error);
+        } else {
+            alert("Error al registrar la venta. Intenta nuevamente.");
+        }
+    } catch (error) {
+        console.error("Error al finalizar venta:", error);
+        alert("Error inesperado al procesar la venta.");
+    }
+}
+

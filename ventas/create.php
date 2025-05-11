@@ -30,7 +30,7 @@ if (
 
         $venta_id = $db->lastInsertId();
 
-        // Insertar detalle de venta
+        // Insertar detalle de venta y actualizar stock
         $queryDetalle = "INSERT INTO detalle_ventas (venta_id, producto_id, cantidad, precio_unitario, subtotal)
                          VALUES (:venta_id, :producto_id, :cantidad, :precio_unitario, :subtotal)";
         $stmtDetalle = $db->prepare($queryDetalle);
@@ -41,6 +41,7 @@ if (
             $precio_unitario = $item['precio_unitario'];
             $subtotal = $item['subtotal'];
 
+            // Insertar en detalle_ventas
             $stmtDetalle->execute([
                 ':venta_id' => $venta_id,
                 ':producto_id' => $producto_id,
@@ -48,6 +49,25 @@ if (
                 ':precio_unitario' => $precio_unitario,
                 ':subtotal' => $subtotal
             ]);
+
+            // Verificar y actualizar stock
+            $stmtStock = $db->prepare("SELECT stock FROM productos WHERE id = :id");
+            $stmtStock->bindParam(":id", $producto_id);
+            $stmtStock->execute();
+            $producto = $stmtStock->fetch(PDO::FETCH_ASSOC);
+
+            if (!$producto || $producto['stock'] < $cantidad) {
+                $db->rollBack();
+                echo json_encode(["error" => "Stock insuficiente para el producto ID $producto_id"]);
+                exit;
+            }
+
+            $nuevo_stock = $producto['stock'] - $cantidad;
+
+            $stmtUpdateStock = $db->prepare("UPDATE productos SET stock = :stock WHERE id = :id");
+            $stmtUpdateStock->bindParam(":stock", $nuevo_stock);
+            $stmtUpdateStock->bindParam(":id", $producto_id);
+            $stmtUpdateStock->execute();
         }
 
         // Confirmar transacción
@@ -56,7 +76,6 @@ if (
             "mensaje" => "Venta registrada correctamente.",
             "id" => $venta_id
         ]);
-
 
     } catch (Exception $e) {
         $db->rollBack();
