@@ -75,6 +75,12 @@ verificarRol(['admin']);
 <!-- Sidebar fuera de la tarjeta -->
 <div id="sidebar-detalles" class="sidebar"></div>
         </div>
+
+       <div style="display: flex; justify-content: center; margin-top: 2rem;">
+    <button id="btnGenerarInforme">Generar Informe</button>
+
+</div>
+
     </main>
 
 

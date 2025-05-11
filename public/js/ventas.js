@@ -156,5 +156,24 @@ function cerrarSidebar() {
     document.getElementById('sidebar-detalles').classList.remove('visible');
 }
 
+document.getElementById('btnGenerarInforme').addEventListener('click', function () {
+    const fechaInicio = document.getElementById('fecha_inicio').value;
+    const fechaFin = document.getElementById('fecha_fin').value;
+    const usuario = document.getElementById('usuario').value;
+    const metodoPago = document.getElementById('metodo_pago').value;
+    const ventaId = document.getElementById('venta_id').value;
+
+    const params = new URLSearchParams();
+    if (fechaInicio) params.append('fecha_inicio', fechaInicio);
+    if (fechaFin) params.append('fecha_fin', fechaFin);
+    if (usuario) params.append('usuario', usuario);
+    if (metodoPago) params.append('metodo_pago', metodoPago);
+    if (ventaId) params.append('venta_id', ventaId);
+
+    // Abrimos el PDF generado en otra pestaña
+    window.open('../ventas/generar_informe.php?' + params.toString(), '_blank');
+});
+
+
 // Cargar ventas al inicio (sin filtros aplicados)
 cargarVentas();
