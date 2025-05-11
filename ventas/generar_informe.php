@@ -30,11 +30,12 @@ $sql = "
         SUM(dv.cantidad) AS cantidad_total,
         SUM(dv.cantidad * (p.precio_venta - p.precio_compra)) AS ganancia_total
     FROM detalle_ventas dv
-    JOIN productos p ON dv.id = p.id  
-    JOIN ventas v ON dv.id= v.id  
-    JOIN usuarios u ON v.id = u.id  
+    JOIN productos p ON dv.producto_id = p.id
+    JOIN ventas v ON dv.venta_id = v.id
+    JOIN usuarios u ON v.usuario_id = u.id
     WHERE 1=1
 ";
+
 
 $params = [];
 
