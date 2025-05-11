@@ -106,15 +106,17 @@ h2 {
 }
 
 button {
-    padding: 0.6rem 1.2rem;
-    background-color: #356adc;
+ margin-top: 15px;
+    padding: 10px 20px;
+    width: 100%;
+    background-color: #003300;
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 20px;
+    font-size: 1rem;
     cursor: pointer;
-    margin-top: 1rem;
 }
 
 button:hover {
-    background-color: #2d57b3;
+ background-color: #005000;
 }
