@@ -52,8 +52,8 @@ async function cargarHistorialVentas() {
 
 
 document.getElementById('filtroForm').addEventListener('submit', function (e) {
-    e.preventDefault();
-    cargarVentas();
+    e.preventDefault(); // Evita la recarga de la página
+    cargarVentas(); // Llama a la función para cargar las ventas con los filtros aplicados
 });
 
 function cargarVentas() {
@@ -61,16 +61,20 @@ function cargarVentas() {
     const fechaFin = document.getElementById('fecha_fin').value;
     const usuario = document.getElementById('usuario').value;
     const metodoPago = document.getElementById('metodo_pago').value;
+    const ventaId = document.getElementById('venta_id').value;
 
     const params = new URLSearchParams();
     if (fechaInicio) params.append('fecha_inicio', fechaInicio);
     if (fechaFin) params.append('fecha_fin', fechaFin);
     if (usuario) params.append('usuario', usuario);
     if (metodoPago) params.append('metodo_pago', metodoPago);
+    if (ventaId) params.append('venta_id', ventaId);
+
+    console.log('URL enviada:', '../ventas/read.php?' + params.toString()); // Depuración: Verifica la URL generada
 
     fetch('../ventas/read.php?' + params.toString())
         .then(res => res.json())
-        .then(data => mostrarVentas(data))
+        .then(data => mostrarVentas(data)) // Llama a la función para mostrar las ventas filtradas
         .catch(err => {
             document.getElementById('historial-ventas').innerHTML = `<p>Error al cargar ventas.</p>`;
             console.error(err);
@@ -86,11 +90,11 @@ function mostrarVentas(ventas) {
         return;
     }
 
-    contenedor.innerHTML = ''; // Limpiar antes
+    contenedor.innerHTML = ''; // Limpiar antes de agregar nuevas tarjetas
 
     ventas.forEach((v, index) => {
         const tarjeta = document.createElement('div');
-        tarjeta.className = 'venta-card'; // Usa CSS para mostrar en columnas
+        tarjeta.className = 'venta-card'; // Usar CSS para mostrar en columnas
         tarjeta.innerHTML = `
             <p><strong>ID:</strong> ${v.id}</p>
             <p><strong>Usuario:</strong> ${v.nombre_usuario}</p>
@@ -102,10 +106,11 @@ function mostrarVentas(ventas) {
         contenedor.appendChild(tarjeta);
     });
 
+    // Asignar los eventos a los botones de "Ver detalles"
     document.querySelectorAll('.btn-detalle').forEach(btn => {
         btn.addEventListener('click', (e) => {
             const index = e.currentTarget.getAttribute('data-index');
-            mostrarSidebar(ventas[index]);
+            mostrarSidebar(ventas[index]); // Mostrar detalles de la venta correspondiente
         });
     });
 }
@@ -151,7 +156,5 @@ function cerrarSidebar() {
     document.getElementById('sidebar-detalles').classList.remove('visible');
 }
 
-// Cargar ventas al inicio
+// Cargar ventas al inicio (sin filtros aplicados)
 cargarVentas();
-
-

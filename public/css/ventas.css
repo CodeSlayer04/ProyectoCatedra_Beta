@@ -1,11 +1,4 @@
-/* Estilo general */
-body {
-    font-family: Arial, sans-serif;
-    padding: 20px;
-    margin: 0;
-    overflow-x: hidden;
-    background-color: #fafafa;
-  }
+
   
   h1 {
     margin-bottom: 20px;
@@ -43,6 +36,9 @@ body {
 /* 📋 Lista de ventas */
 .detalle-card{
  text-align: center;
+ border: #ccc;
+ border-radius: 8px;
+ background-color: #a2ac82;
 }
 
 .venta-card {
@@ -170,6 +166,9 @@ button:hover {
     text-align: center;
 }
 
-#titulo{
+#titulo-ventas{
   text-align: center;
-}
+  padding: 10px;
+  color: white;
+  text-shadow: 1px 1px 0 #000; /* Desplazamiento de 1px a la derecha y abajo, color negro */
+  text-shadow: -1px -1px 0 #000; } 

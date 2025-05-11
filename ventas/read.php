@@ -5,8 +5,8 @@ require_once("../config/conexion.php");
 $database = new Database();
 $db = $database->getConnection();
 
-// Si viene un ID específico
-if (isset($_GET['id'])) {
+// --- 1. Consulta específica por ID de venta (cuando se usa para ver detalles o imprimir factura)
+if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     $id = $_GET['id'];
 
     // Obtener los datos generales de la venta
@@ -38,20 +38,21 @@ if (isset($_GET['id'])) {
     exit;
 }
 
-// Filtros opcionales
+// --- 2. Consulta general con filtros (incluye venta_id como nuevo filtro)
 $fecha_inicio = $_GET['fecha_inicio'] ?? null;
 $fecha_fin = $_GET['fecha_fin'] ?? null;
 $usuario = $_GET['usuario'] ?? null;
 $metodo_pago = $_GET['metodo_pago'] ?? null;
+$venta_id = $_GET['venta_id'] ?? null;
 
-// Construir consulta base
+// Consulta base
 $query = "SELECT v.id, v.usuario_id, u.nombre AS nombre_usuario, v.total, v.metodo_pago, v.fecha
           FROM ventas v
           LEFT JOIN usuarios u ON v.usuario_id = u.id
           WHERE 1=1";
 $params = [];
 
-// Agregar condiciones dinámicamente
+// Aplicar filtros si están presentes
 if ($fecha_inicio) {
     $query .= " AND v.fecha >= ?";
     $params[] = $fecha_inicio . " 00:00:00";
@@ -68,12 +69,15 @@ if ($metodo_pago) {
     $query .= " AND v.metodo_pago = ?";
     $params[] = $metodo_pago;
 }
+if ($venta_id && is_numeric($venta_id)) {
+    $query .= " AND v.id = ?";
+    $params[] = $venta_id;
+}
 
 $query .= " ORDER BY v.fecha DESC";
 
 $stmt = $db->prepare($query);
 $stmt->execute($params);
-
 $ventas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // Añadir detalles a cada venta
