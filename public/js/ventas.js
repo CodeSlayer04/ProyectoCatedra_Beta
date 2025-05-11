@@ -77,8 +77,6 @@ function cargarVentas() {
         });
 }
 
-let slideIndex = 0;
-
 function mostrarVentas(ventas) {
     const contenedor = document.getElementById('venta-slides');
     if (!contenedor) return;
@@ -92,7 +90,7 @@ function mostrarVentas(ventas) {
 
     ventas.forEach((v, index) => {
         const tarjeta = document.createElement('div');
-        tarjeta.className = 'venta-card';
+        tarjeta.className = 'venta-card'; // Usa CSS para mostrar en columnas
         tarjeta.innerHTML = `
             <p><strong>ID:</strong> ${v.id}</p>
             <p><strong>Usuario:</strong> ${v.nombre_usuario}</p>
@@ -110,40 +108,7 @@ function mostrarVentas(ventas) {
             mostrarSidebar(ventas[index]);
         });
     });
-
-    updateCarrusel(ventas.length);
 }
-
-function updateCarrusel(totalVentas) {
-    const cardsPerView = 3;
-    const totalSlides = Math.ceil(totalVentas / cardsPerView);
-
-    const slides = document.querySelector('.venta-slides');
-    const prevBtn = document.querySelector('.prev-btn');
-    const nextBtn = document.querySelector('.next-btn');
-
-    const slideWidth = slides.clientWidth;
-
-    prevBtn.disabled = slideIndex <= 0;
-    nextBtn.disabled = slideIndex >= totalSlides - 1;
-
-    slides.style.transform = `translateX(-${slideIndex * 100}%)`;
-
-    prevBtn.onclick = () => {
-        if (slideIndex > 0) {
-            slideIndex--;
-            updateCarrusel(totalVentas);
-        }
-    };
-
-    nextBtn.onclick = () => {
-        if (slideIndex < totalSlides - 1) {
-            slideIndex++;
-            updateCarrusel(totalVentas);
-        }
-    };
-}
-
 
 function mostrarSidebar(venta) {
     const sidebar = document.getElementById('sidebar-detalles');
@@ -152,34 +117,34 @@ function mostrarSidebar(venta) {
         return;
     }
 
-let html = `
-    <span class="cerrar-sidebar" onclick="cerrarSidebar()">✖</span>
-    <h3>Detalles de la venta</h3>
-    <p><strong>ID:</strong> ${venta.id}</p>
-    <p><strong>Usuario:</strong> ${venta.nombre_usuario}</p>
-    <p><strong>Fecha:</strong> ${venta.fecha}</p>
-    <p><strong>Método de pago:</strong> ${venta.metodo_pago}</p>
-    <p><strong>Total:</strong> $${parseFloat(venta.total).toFixed(2)}</p>
-    <hr>
-    <h4>Productos</h4>
-    <ul>
-        ${venta.detalles.map(d => `
-            <li>${d.nombre_producto} - ${d.cantidad} x $${parseFloat(d.precio_unitario).toFixed(2)}</li>
-        `).join('')}
-    </ul>
-    <div style="text-align: center; margin-top: 30px;">
-        <button onclick="imprimirSidebar(${venta.id})" style="padding: 10px 20px; background-color: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer;">
-             Imprimir
-        </button>
-    </div>
-`;
+    let html = `
+        <span class="cerrar-sidebar" onclick="cerrarSidebar()">✖</span>
+        <h3>Detalles de la venta</h3>
+        <p><strong>ID:</strong> ${venta.id}</p>
+        <p><strong>Usuario:</strong> ${venta.nombre_usuario}</p>
+        <p><strong>Fecha:</strong> ${venta.fecha}</p>
+        <p><strong>Método de pago:</strong> ${venta.metodo_pago}</p>
+        <p><strong>Total:</strong> $${parseFloat(venta.total).toFixed(2)}</p>
+        <hr>
+        <h4>Productos</h4>
+        <ul>
+            ${venta.detalles.map(d => `
+                <li>${d.nombre_producto} - ${d.cantidad} x $${parseFloat(d.precio_unitario).toFixed(2)}</li>
+            `).join('')}
+        </ul>
+        <div style="text-align: center; margin-top: 30px;">
+            <button class="btn-imprimir" onclick="imprimirSidebar(${venta.id})">
+                Imprimir
+            </button>
+        </div>
+    `;
 
     sidebar.innerHTML = html;
     sidebar.classList.add('visible');
 }
 
-function imprimirSidebar(idVenta){
-     window.open(`../ventas/generar_factura.php?id=${idVenta}`, '_blank');
+function imprimirSidebar(idVenta) {
+    window.open(`../ventas/generar_factura.php?id=${idVenta}`, '_blank');
 }
 
 function cerrarSidebar() {
@@ -188,4 +153,5 @@ function cerrarSidebar() {
 
 // Cargar ventas al inicio
 cargarVentas();
+
 

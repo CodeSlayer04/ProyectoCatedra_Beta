@@ -36,7 +36,7 @@ verificarRol(['admin']);
 
     <main>
 
-        <h2>Filtrar ventas</h2>
+        <h2 id="titulo">Filtrar ventas</h2>
         <form id="filtroForm">
             <label for="fecha_inicio">Desde:</label>
             <input type="date" id="fecha_inicio" name="fecha_inicio">
@@ -59,19 +59,11 @@ verificarRol(['admin']);
         </form>
 
         <hr>
-<div class="card">
+<div class="detalle-card">
   <h2 class="titulo-ventas">Listado de ventas realizadas</h2>
-
-  <div class="carrusel-wrapper">
-    <button class="carrusel-btn prev-btn">‹</button>
-    
-    <div class="venta-carrusel">
-      <div id="venta-slides" class="venta-slides">
-        <!-- Aquí se insertan las tarjetas desde JS -->
-      </div>
-    </div>
-    
-    <button class="carrusel-btn next-btn">›</button>
+  <div id="venta-slides">
+  </div>
+  <div id="historial-ventas" style="margin-top: 1rem; color: red;">
   </div>
 </div>
 
