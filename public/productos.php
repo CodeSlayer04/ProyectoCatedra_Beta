@@ -63,7 +63,7 @@ verificarRol(['admin']);
                 <input type="number" id="stock" name="stock" placeholder="Stock" required>
                 
                 <input type="checkbox" name="activarFecha" id="activarFecha">
-                <label for="activarFecha">Tiene caducidad</label>
+                <label for="activarFecha">Tiene caducidad</label><br><br>
                 <input type="date" id="fecha_caducidad" name="fecha_caducidad" style="visibility:hidden;">
                 
                 <select id="categoria_id" name="categoria_id" required>

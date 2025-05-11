@@ -46,12 +46,12 @@ async function cargarUsuarios() {
 
         data.forEach(user => {
             const div = document.createElement("div");
-            div.classList.add("user");
+            div.classList.add("usuario"); // Aquí aplicamos la clase con estilo visual similar a productos
 
             div.innerHTML = `
                 <h3>${user.nombre}</h3>
-                <p><strong>Nombre de usuario:</strong> ${user.usuario}</p>
-                <p><strong>Correo electrónico:</strong> ${user.correo}</p>
+                <p><strong>Usuario:</strong> ${user.usuario}</p>
+                <p><strong>Correo:</strong> ${user.correo}</p>
                 <p><strong>Rol:</strong> ${user.rol}</p>
                 <button onclick="editarUsuario(${user.id})">Editar</button>
                 <button onclick="eliminarUsuario(${user.id})">Eliminar</button>
