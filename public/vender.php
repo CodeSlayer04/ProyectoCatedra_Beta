@@ -34,11 +34,32 @@ verificarRol(['admin']);
             </nav>
         </section>
         <section class="filtros">
-            <label for="nombre">Nombre:</label>
-            <input type="text" class="texto Nombre-producto" placeholder="Buscar nombre...">
-            <label for="precio">Precio:</label>
-            <input type="number" class="texto preciomin" placeholder="Mín">
-            <input type="number" class="texto preciomax" placeholder="Máx">
+            <form id="filtroFormProductos">
+                <label for="nombre_nombre">Nombre:</label>
+                <input id="filtro_nombre" name="filtro_nombre" type="text" class="texto Nombre-producto"
+                    placeholder="Buscar nombre...">
+
+                <label for="filtro_sku">SKU:</label>
+                <input id="filtro_sku" name="filtro_sku" type="text" class="texto Nombre-producto"
+                    placeholder="Buscar sku...">
+
+                <label for="precio_precio_min">Precio:</label>
+                <input id="filtro_precio_min" name="filtro_precio_min" type="number" class="texto preciomin"
+                    placeholder="Mín">
+
+                <input id="filtro_precio_max" name="filtro_precio_max" type="number" class="texto preciomax"
+                    placeholder="Máx">
+
+                <label for="filtro_categoria">Categoría:</label>
+                <select id="filtro_categoria_id" name="filtro_categoria">
+
+                    <!-- Opciones se cargarán dinámicamente -->
+                </select>
+
+                <button type="submit">Aplicar filtros</button>
+
+            </form>
+            <button type="button" id="limpiarFiltros">Limpiar filtros</button>
         </section>
     </header>
 

@@ -4,8 +4,14 @@ let idUsuario = null;
 document.addEventListener("DOMContentLoaded", () => {
     verificarSesion();
     cargarProductos();
+    cargarCategorias();
 
     document.getElementById("btnFinalizarVenta").addEventListener("click", finalizarVenta);
+    document.getElementById('filtroFormProductos').addEventListener('submit', function (e) {
+        e.preventDefault(); // Evita la recarga de la página
+        cargarProductos(); // Llama a la función para cargar las ventas con los filtros aplicados
+    });
+    document.getElementById('limpiarFiltros').addEventListener('click', limpiarFiltros);
 });
 
 async function verificarSesion() {
@@ -20,7 +26,7 @@ async function verificarSesion() {
     }
 }
 
-async function cargarProductos() {
+/* async function cargarProductos() {
     try {
         const response = await fetch("../productos/read.php");
         const data = await response.json();
@@ -36,7 +42,7 @@ async function cargarProductos() {
             const div = document.createElement("div");
             div.classList.add("producto");
 
-  div.innerHTML = `
+            div.innerHTML = `
 
     <section class="producto item">
         <section class="producto imagen">
@@ -58,7 +64,76 @@ async function cargarProductos() {
     } catch (error) {
         console.error("Error cargando productos:", error);
     }
+} */
+
+async function cargarProductos() {
+
+    const nombrePro = document.getElementById('filtro_nombre').value;
+    const skuPro = document.getElementById('filtro_sku').value;
+    const precioMin = document.getElementById('filtro_precio_min').value;
+    const precioMax = document.getElementById('filtro_precio_max').value;
+    const categoriaProd = document.getElementById('filtro_categoria_id').value;
+
+    const params = new URLSearchParams();
+    if (nombrePro) params.append('filtro_nombre', nombrePro);
+    if (skuPro) params.append('filtro_sku', skuPro);
+    if (precioMin) params.append('filtro_precio_min', precioMin);
+    if (precioMax) params.append('filtro_precio_max', precioMax);
+    if (categoriaProd) params.append('filtro_categoria', categoriaProd);
+
+    console.log('URL enviada:', '../productos/read.php?' + params.toString()); // Depuración: Verifica la URL generada
+
+    fetch('../productos/read.php?' + params.toString())
+        .then(res => res.json())
+        .then(data => mostrarProductos(data)) // Llama a la función para mostrar las ventas filtradas
+        .catch(err => {
+            document.getElementById('lista-productos').innerHTML = `<p>Error al cargar productos.</p>`;
+            console.error(err);
+        });
 }
+
+function mostrarProductos(productos) {
+
+
+    const contenedor = document.getElementById("lista-productos");
+    if (!contenedor) return;
+
+
+
+    if (productos.length === 0) {
+        contenedor.innerHTML = '<p>No se encontraron productos con los filtros seleccionados.</p>';
+        return;
+    }
+
+    contenedor.innerHTML = ''; // Limpiar antes de agregar nuevas tarjetas
+
+    productos.forEach((prod, index) => {
+        const tarjeta = document.createElement("div");
+        tarjeta.classList.add("producto");
+
+        tarjeta.innerHTML = `
+            <section class="producto item">
+        <section class="producto imagen">
+        ${prod.imagen ? `<img class="producto imagen" src="imagenes/${prod.imagen}" alt="${prod.nombre}" width="100">` : ''}
+        </section>
+        <section class="producto detalle">
+          <p class="producto detalle nombre"><strong>${prod.nombre}</strong></p>
+          <p class="producto detalle precio"><strong>Precio:</strong> $${prod.precio_venta}</p>
+          <p class="producto detalle nombre"><strong>${prod.categoria_nombre || 'Sin categoría'}</strong></p>
+            <p><strong>Disponibles:</strong> ${prod.stock}</p>
+          </section>
+        ${prod.stock > 0 ? `
+        <input type='number' min='1' max='${prod.stock}' placeholder='Cantidad' id='cantidad-${prod.id}' value='1' step='1'>
+        <button class="boton producto agregar" onclick='agregarAlCarrito(${JSON.stringify(prod).replace(/'/g, "\\'")})'>Agregar al carrito</button>
+    ` : `<p style="color:red;"><strong>Sin stock disponible</strong></p>`}
+      </section>
+        `;
+        contenedor.appendChild(tarjeta);
+    });
+}
+
+
+
 
 function agregarAlCarrito(prod) {
     const cantidad = parseInt(document.getElementById(`cantidad-${prod.id}`).value);
@@ -214,3 +289,35 @@ async function finalizarVenta() {
     }
 }
 
+async function cargarCategorias() {
+    try {
+        const response = await fetch("../categorias/read.php");
+        const data = await response.json();
+
+
+        const select2 = document.getElementById("filtro_categoria_id");
+        select2.innerHTML = '<option value="" selected>Todos</option>';
+
+        data.forEach(cat => {
+            const option = document.createElement("option");
+            option.value = cat.id;
+            option.textContent = cat.nombre;
+            select2.appendChild(option);
+        });
+    } catch (error) {
+        console.error("Error cargando categorías:", error);
+    }
+}
+
+function limpiarFiltros() {
+
+    // Limpiar todos los inputs
+    document.getElementById('filtro_nombre').value = '';
+    document.getElementById('filtro_sku').value = '';
+    document.getElementById('filtro_precio_min').value = '';
+    document.getElementById('filtro_precio_max').value = '';
+    document.getElementById('filtro_categoria_id').value = '';
+
+    // Cargar todos los productos sin filtros
+    cargarProductos();
+}

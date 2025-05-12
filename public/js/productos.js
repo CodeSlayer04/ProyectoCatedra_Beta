@@ -24,6 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
         e.preventDefault(); // Evita la recarga de la página
         cargarProductos(); // Llama a la función para cargar las ventas con los filtros aplicados
     });
+    document.getElementById('limpiarFiltros').addEventListener('click', limpiarFiltros);
 });
 
 async function cargarCategorias() {
@@ -35,7 +36,7 @@ async function cargarCategorias() {
         select.innerHTML = "";
 
         const select2 = document.getElementById("filtro_categoria_id");
-        select2.innerHTML = "";
+        select2.innerHTML = '<option value="" selected>Todos</option>';
 
         data.forEach(cat => {
             const option = document.createElement("option");
@@ -97,7 +98,7 @@ async function cargarCategorias() {
 async function cargarProductos() {
 
     const nombrePro = document.getElementById('filtro_nombre').value;
-    const skuPro = document.getElementById('filtro_sku');
+    const skuPro = document.getElementById('filtro_sku').value;
     const precioMin = document.getElementById('filtro_precio_min').value;
     const precioMax = document.getElementById('filtro_precio_max').value;
     const categoriaProd = document.getElementById('filtro_categoria_id').value;
@@ -109,46 +110,15 @@ async function cargarProductos() {
     if (precioMax) params.append('filtro_precio_max', precioMax);
     if (categoriaProd) params.append('filtro_categoria', categoriaProd);
 
+    console.log('URL enviada:', '../productos/read.php?' + params.toString()); // Depuración: Verifica la URL generada
 
-    try {
-        const response = await fetch("../productos/read.php");
-        const data = await response.json();
-
-        const contenedor = document.getElementById("lista-productos");
-        contenedor.innerHTML = "";
-
-        if (data.length === 0) {
-            contenedor.innerHTML = "<p>No hay productos registrados.</p>";
-            return;
-        }
-
-        data.forEach(prod => {
-            const tarjeta = document.createElement("div");
-            tarjeta.classList.add("producto");
-
-            tarjeta.innerHTML = `
-            <center>
-                <h2>${prod.nombre}</h2>
-                <p><strong>Descripción:</strong> ${prod.descripcion}</p>
-                <p><strong>SKU:</strong> ${prod.sku}</p>
-                <p><strong>Precio Compra:</strong> $${prod.precio_compra}</p>
-                <p><strong>Precio Venta:</strong> $${prod.precio_venta}</p>
-                <p><strong>Stock:</strong> ${prod.stock}</p>
-                <p><strong>Categoría:</strong> ${prod.categoria_nombre || 'Sin categoría'}</p>
-                <p><strong>Caduca:</strong> ${prod.fecha_caducidad === '0000-00-00' ? 'N/A' : prod.fecha_caducidad}</p>
-                ${prod.imagen ? `<img src="imagenes/${prod.imagen}" alt="${prod.nombre}" width="100">` : ''}
-                <div style="margin-top: 10px;">
-                    <button onclick="editarProducto(${prod.id})">Editar</button>
-                    <button onclick="eliminarProducto(${prod.id})">Eliminar</button>
-                </div>
-            </center>
-            `;
-
-            contenedor.appendChild(tarjeta);
+    fetch('../productos/read.php?' + params.toString())
+        .then(res => res.json())
+        .then(data => mostrarProductos(data)) // Llama a la función para mostrar las ventas filtradas
+        .catch(err => {
+            document.getElementById('lista-productos').innerHTML = `<p>Error al cargar productos.</p>`;
+            console.error(err);
         });
-    } catch (error) {
-        console.error("Error cargando productos:", error);
-    }
 }
 
 function mostrarProductos(productos) {
@@ -160,13 +130,36 @@ function mostrarProductos(productos) {
 
 
     if (productos.length === 0) {
-        contenedor.innerHTML = '<p>No se encontraron ventas.</p>';
+        contenedor.innerHTML = '<p>No se encontraron productos con los filtros seleccionados.</p>';
         return;
     }
 
     contenedor.innerHTML = ''; // Limpiar antes de agregar nuevas tarjetas
 
+    productos.forEach((prod, index) => {
+        const tarjeta = document.createElement("div");
+        tarjeta.classList.add("producto");
 
+        tarjeta.innerHTML = `
+            <center>
+                ${prod.imagen ? `<img src="imagenes/${prod.imagen}" alt="${prod.nombre}" width="100">` : ''}
+                <h2>${prod.nombre}</h2>
+                <p><strong>Descripción:</strong> ${prod.descripcion || "-"}</p>
+                <p><strong>SKU:</strong> ${prod.sku}</p>
+                <p><strong>Precio Compra:</strong> $${prod.precio_compra}</p>
+                <p><strong>Precio Venta:</strong> $${prod.precio_venta}</p>
+                <p><strong>Stock:</strong> ${prod.stock}</p>
+                <p><strong>Categoría:</strong> ${prod.categoria_nombre || 'Sin categoría'}</p>
+                <p><strong>Caduca:</strong> ${prod.fecha_caducidad === '0000-00-00' ? 'N/A' : prod.fecha_caducidad}</p>
+                
+                <div style="margin-top: 10px;">
+                    <button onclick="editarProducto(${prod.id})">Editar</button>
+                    <button onclick="eliminarProducto(${prod.id})">Eliminar</button>
+                </div>
+            </center>
+        `;
+        contenedor.appendChild(tarjeta);
+    });
 }
 
 
@@ -348,4 +341,16 @@ async function toggleFecha() {
         campoFecha.style.visibility = 'hidden';
     }
 
+}
+
+function limpiarFiltros() {
+    // Limpiar todos los inputs
+    document.getElementById('filtro_nombre').value = '';
+    document.getElementById('filtro_sku').value = '';
+    document.getElementById('filtro_precio_min').value = '';
+    document.getElementById('filtro_precio_max').value = '';
+    document.getElementById('filtro_categoria_id').value = '';
+
+    // Cargar todos los productos sin filtros
+    cargarProductos();
 }

@@ -53,12 +53,15 @@ verificarRol(['admin']);
                     placeholder="Máx">
 
                 <label for="filtro_categoria">Categoría:</label>
-                <select id="filtro_categoria_id" name="filtro_categoria" required>
+                <select id="filtro_categoria_id" name="filtro_categoria">
+
                     <!-- Opciones se cargarán dinámicamente -->
                 </select>
 
                 <button type="submit">Aplicar filtros</button>
+
             </form>
+            <button type="button" id="limpiarFiltros">Limpiar filtros</button>
         </section>
     </header>
 
