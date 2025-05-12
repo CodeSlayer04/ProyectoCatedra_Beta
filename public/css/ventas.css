@@ -1,174 +1,193 @@
+h1 {
+  margin-bottom: 20px;
+  color: #ffffff;
+}
 
-  
-  h1 {
-    margin-bottom: 20px;
-    color: #ffffff;
-  }
-  
-  /* 🔍 Barra de búsqueda */
-  #busqueda {
-    margin-bottom: 20px;
-  }
-  
-  #busqueda input {
-    padding: 10px;
-    font-size: 16px;
-    margin-right: 10px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    width: 220px;
-  }
-  
-  #boton-buscar {
-    padding: 10px 15px;
-    font-size: 16px;
-    cursor: pointer;
-    background-color: #2196F3;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    transition: background-color 0.3s;
-  }
-  
-  #boton-buscar:hover {
-    background-color: #0d8bf2;
-  }
+/* 🔍 Barra de búsqueda */
+#busqueda {
+  margin-bottom: 20px;
+}
+
+#busqueda input {
+  padding: 10px;
+  font-size: 16px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 220px;
+}
+
+#boton-buscar {
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #2196F3;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  transition: background-color 0.3s;
+}
+
+#boton-buscar:hover {
+  background-color: #0d8bf2;
+}
+
 /* 📋 Lista de ventas */
-.detalle-card{
- text-align: center;
- border: #ccc;
- border-radius: 8px;
- background-color: #9FC7A1;
+.detalle-card {
+  text-align: center;
+  border: #ccc;
+  border-radius: 8px;
+  background-color: #9FC7A1;
 }
 
 .venta-card {
   margin-bottom: 20px;
   border: 1px solid #ccc;
   padding: 10px;
-  width: 300px; /* Ocupa el 100% del espacio de su celda */
+  width: 300px;
+  /* Ocupa el 100% del espacio de su celda */
   border-radius: 8px;
   background-color: #fff;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
   flex-direction: column;
   justify-content: space-between;
-  min-height: 150px; /* Altura mínima para las tarjetas */
-  box-sizing: border-box; /* Incluye el padding en el ancho total */
+  min-height: 150px;
+  /* Altura mínima para las tarjetas */
+  box-sizing: border-box;
+  /* Incluye el padding en el ancho total */
 }
+
 /* Resumen de la venta (información básica) */
 .venta-card .resumen {
-    font-weight: bold;
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: space-between; /* Alinea el texto horizontalmente */
-    white-space: nowrap;            /* Evita que el texto se divida */
-    overflow: hidden;               /* Oculta el texto que no cabe */
-    text-overflow: ellipsis;        /* Muestra puntos suspensivos si el texto es largo */
+  font-weight: bold;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  /* Alinea el texto horizontalmente */
+  white-space: nowrap;
+  /* Evita que el texto se divida */
+  overflow: hidden;
+  /* Oculta el texto que no cabe */
+  text-overflow: ellipsis;
+  /* Muestra puntos suspensivos si el texto es largo */
 }
 
 /* Botón de "Ver detalles" */
 .venta-card .btn-detalle {
-    padding: 8px 12px;
-    cursor: pointer;
- background-color: #0b3d0b;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 14px;
-    margin-top: 10px; /* Espacio entre el texto y el botón */
-    align-items: center; /* Alinea el botón a la izquierda */
+  padding: 8px 12px;
+  cursor: pointer;
+  background-color: #0c3c01;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  margin-top: 10px;
+  /* Espacio entre el texto y el botón */
+  align-items: center;
+  /* Alinea el botón a la izquierda */
 }
 
 /* Cambio de color al pasar el mouse por encima del botón */
 .venta-card .btn-detalle:hover {
-    background-color: #003300;
+  background-color: #156902;
 }
 
 #venta-slides {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 columnas */
+  grid-template-columns: repeat(3, 1fr);
+  /* 3 columnas */
   gap: 1rem;
   padding: 1rem;
-  max-width: 100%; /* Asegura que no se desborde */
-  margin: 0 auto; /* Centra el contenedor */
-  box-sizing: border-box; /* Incluye el padding en el ancho total */
+  max-width: 100%;
+  /* Asegura que no se desborde */
+  margin: 0 auto;
+  /* Centra el contenedor */
+  box-sizing: border-box;
+  /* Incluye el padding en el ancho total */
 }
 
 
 /* Contenedor para el título */
 .titulo-ventas {
-    text-align: center;
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
 }
 
 /* Estilo para el Sidebar (detalles de la venta) */
 #sidebar-detalles {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 350px;
-    height: 100%;
-    background-color: #fff;
-    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
-    padding: 1rem;
-    overflow-y: auto;
-    transform: translateX(100%);
-    transition: transform 0.3s ease-in-out;
-    z-index: 9999;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 350px;
+  height: 100%;
+  background-color: #fff;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  overflow-y: auto;
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+  z-index: 9999;
 }
 
 #sidebar-detalles.visible {
-    transform: translateX(0);
+  transform: translateX(0);
 }
 
 /* Estilo para el botón de cerrar en el Sidebar */
 .cerrar-sidebar {
-    font-size: 1.5rem;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    cursor: pointer;
-    color: #333;
+  font-size: 1.5rem;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  color: #333;
 }
 
 .cerrar-sidebar:hover {
-    color: red;
+  color: red;
 }
 
 /* Estilos del botón de imprimir en el Sidebar */
 button {
-    margin-top: 1rem;
-    padding: 10px 20px;
-  background-color: #0b3d0b;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+  margin-top: 1rem;
+  padding: 10px 20px;
+  background-color: #0c3c01;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 button:hover {
-    background-color: #003300;
+  background-color: #156902;
 }
 
-.btn-imprimir{
-  padding: 10px 20px; 
-  color: white; 
-  border: none; 
-  border-radius: 4px; 
+.btn-imprimir {
+  padding: 10px 20px;
+  color: white;
+  border: none;
+  border-radius: 4px;
   cursor: pointer;
   background-color: #0b3d0b;
 }
 
 /* Estilo para el contenedor de errores */
 #historial-ventas {
-    margin-top: 1rem;
-    color: red;
-    text-align: center;
+  margin-top: 1rem;
+  color: red;
+  text-align: center;
 }
 
-#titulo-ventas{
+#titulo-ventas {
   text-align: center;
   padding: 10px;
   color: white;
-  text-shadow: 1px 1px 0 #000; /* Desplazamiento de 1px a la derecha y abajo, color negro */
-  text-shadow: -1px -1px 0 #000; } 
+  text-shadow: 1px 1px 0 #000;
+  /* Desplazamiento de 1px a la derecha y abajo, color negro */
+  text-shadow: -1px -1px 0 #000;
+}
+
+ul {
+  text-align: right;
+}

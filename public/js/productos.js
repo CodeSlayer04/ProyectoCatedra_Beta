@@ -143,7 +143,7 @@ function mostrarProductos(productos) {
         tarjeta.innerHTML = `
             <center>
                 ${prod.imagen ? `<img src="imagenes/${prod.imagen}" alt="${prod.nombre}" width="100">` : ''}
-                <h2>${prod.nombre}</h2>
+                <h3>${prod.nombre}</h2>
                 <p><strong>Descripción:</strong> ${prod.descripcion || "-"}</p>
                 <p><strong>SKU:</strong> ${prod.sku}</p>
                 <p><strong>Precio Compra:</strong> $${prod.precio_compra}</p>

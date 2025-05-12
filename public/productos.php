@@ -53,7 +53,7 @@ verificarRol(['admin']);
                     placeholder="Máx">
 
                 <label for="filtro_categoria">Categoría:</label>
-                <select id="filtro_categoria_id" name="filtro_categoria">
+                <select id="filtro_categoria_id" name="filtro_categoria" class="texto">
 
                     <!-- Opciones se cargarán dinámicamente -->
                 </select>
@@ -68,7 +68,7 @@ verificarRol(['admin']);
     <main class="container">
         <div class="left-column">
             <div class="card-productos">
-                <h1>Productos registrados</h1>
+                <h1 class="titu1">Productos registrados</h1>
                 <div id="lista-productos">Cargando...</div>
             </div>
         </div>
@@ -94,9 +94,11 @@ verificarRol(['admin']);
                     <input type="number" id="precio_venta" name="precio_venta" placeholder="Precio de venta" required
                         step="0.01">
                     <input type="number" id="stock" name="stock" placeholder="Stock" required>
+                    <div class="checkbox-group">
+                        <label for="activarFecha">Tiene caducidad</label><input type="checkbox" name="activarFecha"
+                            id="activarFecha">
+                    </div>
 
-                    <input type="checkbox" name="activarFecha" id="activarFecha">
-                    <label for="activarFecha">Tiene caducidad</label><br><br>
                     <input type="date" id="fecha_caducidad" name="fecha_caducidad" style="visibility:hidden;">
 
                     <select id="categoria_id" name="categoria_id" required>

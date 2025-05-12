@@ -59,6 +59,10 @@ ob_start();
             text-align: center;
         }
 
+        h2 {
+            text-align: center;
+        }
+
         table {
             width: 100%;
             border-collapse: collapse;
@@ -75,7 +79,8 @@ ob_start();
 </head>
 
 <body>
-    <h1>Factura - Venta #<?= $venta['id'] ?></h1>
+    <h1>Variedades Escobar</h1>
+    <h2>Factura - Venta #<?= $venta['id'] ?></h2>
     <p><strong>Fecha:</strong> <?= $venta['fecha'] ?></p>
     <p><strong>Cajero/a:</strong> <?= $venta['nombre_usuario'] ?></p>
     <p><strong>Método de pago:</strong> <?= $venta['metodo_pago'] ?></p>

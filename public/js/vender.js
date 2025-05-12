@@ -112,21 +112,21 @@ function mostrarProductos(productos) {
         tarjeta.classList.add("producto");
 
         tarjeta.innerHTML = `
-            <section class="producto item">
-        <section class="producto imagen">
-        ${prod.imagen ? `<img class="producto imagen" src="imagenes/${prod.imagen}" alt="${prod.nombre}" width="100">` : ''}
-        </section>
-        <section class="producto detalle">
-          <p class="producto detalle nombre"><strong>${prod.nombre}</strong></p>
-          <p class="producto detalle precio"><strong>Precio:</strong> $${prod.precio_venta}</p>
-          <p class="producto detalle nombre"><strong>${prod.categoria_nombre || 'Sin categoría'}</strong></p>
-            <p><strong>Disponibles:</strong> ${prod.stock}</p>
-          </section>
+
+
+        <center>
+                ${prod.imagen ? `<img src="imagenes/${prod.imagen}" alt="${prod.nombre}" width="100">` : ''}
+                <h3>${prod.nombre}</h2>
+                <p><strong>Precio Venta:</strong> $${prod.precio_venta}</p>
+                <p><strong>Categoría:</strong> ${prod.categoria_nombre || 'Sin categoría'}</p>
+                <p><strong>Disponible:</strong> ${prod.stock}</p>
         ${prod.stock > 0 ? `
-        <input type='number' min='1' max='${prod.stock}' placeholder='Cantidad' id='cantidad-${prod.id}' value='1' step='1'>
+        <input class='cantidadAgregar' type='number' min='1' max='${prod.stock}' placeholder='Cantidad' id='cantidad-${prod.id}' value='1' step='1'>
+        <br>
+        <br>
         <button class="boton producto agregar" onclick='agregarAlCarrito(${JSON.stringify(prod).replace(/'/g, "\\'")})'>Agregar al carrito</button>
     ` : `<p style="color:red;"><strong>Sin stock disponible</strong></p>`}
-      </section>
+      </center>
         `;
         contenedor.appendChild(tarjeta);
     });
@@ -136,14 +136,28 @@ function mostrarProductos(productos) {
 
 
 function agregarAlCarrito(prod) {
-    const cantidad = parseInt(document.getElementById(`cantidad-${prod.id}`).value);
+    const input = document.getElementById(`cantidad-${prod.id}`);
+    const cantidad = parseInt(input.value);
+    const max = parseInt(input.max); // Valor máximo permitido desde el atributo max (igual a prod.stock)
+
     if (!cantidad || cantidad < 1) {
-        alert("Ingresa una cantidad válida");
+        alert("Ingresa una cantidad válida (mínimo 1)");
+        input.value = 1;
+        return;
+    }
+
+    if (cantidad > max) {
+        alert(`No puedes agregar más de ${max} unidades. Stock insuficiente.`);
+        input.value = max;
         return;
     }
 
     const existente = carrito.find(p => p.id === prod.id);
     if (existente) {
+        if (existente.cantidad + cantidad > max) {
+            alert(`Solo puedes agregar ${max - existente.cantidad} unidades más de este producto.`);
+            return;
+        }
         existente.cantidad += cantidad;
     } else {
         carrito.push({
@@ -156,6 +170,7 @@ function agregarAlCarrito(prod) {
 
     actualizarCarrito();
 }
+
 
 function actualizarCarrito() {
     const contenedor = document.getElementById("carrito-lista");
@@ -171,7 +186,9 @@ function actualizarCarrito() {
         div.innerHTML = `
             <section class="items">
             ${item.nombre} - ${item.cantidad} x $${item.precio_unitario} = $${subtotal.toFixed(2)}
-            <button class="boton btncarrito" onclick="eliminarDelCarrito(${index})">Eliminar</button>
+            <button class="boton btncarrito" onclick="eliminarDelCarrito(${index})">
+    <img src="imagenes/delete.png" alt="Eliminar" class="icono-eliminar">
+</button>
             </section>
             `;
         contenedor.appendChild(div);

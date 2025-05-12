@@ -23,7 +23,7 @@ verificarRol(['admin']);
 
 <body>
     <header>
-        
+
         <section class="menu navegacion">
             <h1>Historial de ventas</h1>
             <nav class="navegacion">
@@ -58,32 +58,32 @@ verificarRol(['admin']);
                 <option value="transferencia">Transferencia</option>
             </select>
             <label for="venta_id">ID:</label>
-           <input type="number" id="venta_id" name="venta_id" placeholder="ID de venta">
+            <input type="number" id="venta_id" name="venta_id" placeholder="ID de venta">
 
             <button type="submit">Aplicar filtros</button>
         </form>
 
-             <div style="display: flex; justify-content: center; margin-top: 2rem;">
-            <button id="btnGenerarInforme">Generar Informe</button>
-            </div>
-
-        <hr>
-<div class="detalle-card">
-  <h2 id="titulo-ventas">Listado de ventas realizadas</h2>
-  <div id="venta-slides">
-  </div>
-  <div id="historial-ventas" style="margin-top: 1rem; color: red;">
-  </div>
-</div>
-
-
-</div>
-
-<!-- Sidebar fuera de la tarjeta -->
-<div id="sidebar-detalles" class="sidebar"></div>
+        <div style="display: flex; justify-content: center; margin-top: 2rem;">
+            <button id="btnGenerarInforme">Generar informe de ventas</button>
         </div>
 
-  
+        <hr>
+        <div class="detalle-card">
+            <h2 id="titulo-ventas">Listado de ventas realizadas</h2>
+            <div id="venta-slides">
+            </div>
+            <div id="historial-ventas" style="margin-top: 1rem; color: red;">
+            </div>
+        </div>
+
+
+        </div>
+
+        <!-- Sidebar fuera de la tarjeta -->
+        <div id="sidebar-detalles" class="sidebar"></div>
+        </div>
+
+
 
     </main>
 

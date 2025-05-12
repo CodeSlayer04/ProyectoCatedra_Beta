@@ -23,10 +23,10 @@ async function mostrarContra(e) {
     // Alternar entre tipo password y text
     if (campoContrasena.type === "password") {
         campoContrasena.type = "text";
-        this.textContent = "Ocultar 🙈";
+        this.textContent = "Ocultar contraseña";
     } else {
         campoContrasena.type = "password";
-        this.textContent = "Mostrar 👁️";
+        this.textContent = "Mostrar contraseña";
     }
 }
 

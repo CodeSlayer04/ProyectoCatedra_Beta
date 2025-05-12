@@ -18,10 +18,14 @@ main {
 .usuario-card {
     background-color: white;
     border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     padding: 15px;
     margin-bottom: 20px;
     border-left: 4px solid #4e73df;
+}
+
+.titu1 {
+    text-align: center;
 }
 
 .usuario-card h2 {
@@ -50,7 +54,7 @@ main {
 .agregar-section {
     background-color: white;
     border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     padding: 15px;
     margin-bottom: 20px;
 }
@@ -126,15 +130,15 @@ main {
     .two-columns {
         grid-template-columns: 1fr;
     }
-    
+
     .usuario-info {
         grid-template-columns: 1fr;
     }
-    
+
     #form-usuarios-create {
         grid-template-columns: 1fr;
     }
-    
+
     #form-usuarios-create button[type="submit"],
     #btnMostrarContra {
         grid-column: span 1;
@@ -153,7 +157,7 @@ main {
     background-color: #e7f3ec;
     padding: 20px;
     border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease;
 }
 
@@ -196,44 +200,44 @@ main {
 }
 
 #lista-usuarios {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-  justify-content: flex-start;
-  padding: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: flex-start;
+    padding: 1rem;
 }
 
 .usuario {
-  background-color: #eafaf1;
-  border: 1px solid #a4d4b4;
-  border-radius: 15px;
-  padding: 1rem;
-  width: 280px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease;
+    background-color: #eafaf1;
+    border: 1px solid #a4d4b4;
+    border-radius: 15px;
+    padding: 1rem;
+    width: 280px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
 }
 
 .usuario:hover {
-  transform: translateY(-5px);
+    transform: translateY(-5px);
 }
 
 .usuario p {
-  margin: 5px 0;
+    margin: 5px 0;
 }
 
 .usuario button {
-  margin-right: 0.5rem;
-  margin-top: 10px;
-  padding: 0.4rem 0.8rem;
-  border: none;
-  border-radius: 6px;
-  background-color: #4CAF50;
-  color: white;
-  cursor: pointer;
+    margin-right: 0.5rem;
+    margin-top: 10px;
+    padding: 0.4rem 0.8rem;
+    border: none;
+    border-radius: 6px;
+    background-color: #0c3c01;
+    color: white;
+    cursor: pointer;
 }
 
 .usuario button:hover {
-  background-color: #45a049;
+    background-color: #156902;
 }
 
 .container {
@@ -267,10 +271,10 @@ main {
 }
 
 #btnMostrarContra {
-    color: black;           
+    color: black;
 }
 
 #btnMostrarContra:hover {
-    background-color: #45a049; /* verde más oscuro */
+    background-color: #45a049;
+    /* verde más oscuro */
 }
-

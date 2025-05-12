@@ -18,6 +18,7 @@ verificarRol(['admin']);
     <meta charset="UTF-8">
     <title>Atender compra</title>
     <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/DiseñoProductos.css">
 </head>
 
 <body>
@@ -65,12 +66,17 @@ verificarRol(['admin']);
 
     <section class="cuerpo">
         <section class="card productos">
-            <section id="lista-productos">Cargando...</section>
+            <div class="card-productos">
+                <h1>Productos registrados</h1>
+                <div id="lista-productos">Cargando...</div>
+            </div>
         </section>
+
+
         <section class="card carrito">
-            <h2>Carrito de compras</h2>
+            <h2 style="text-align:center">Carrito de compras</h2>
             <div id="carrito-lista"></div>
-            <p><strong>Total: $<span id="total">0.00</span></strong></p>
+            <p style="text-align:right"><strong>Total: $<span id="total">0.00</span></strong></p>
             <label for="metodo_pago">Método de pago:</label>
             <select id="metodo_pago" style="margin-bottom: 0.5rem;">
                 <option value="efectivo">Efectivo</option>

@@ -141,6 +141,10 @@ button:hover {
   border: 1px solid #2E2D1D;
 }
 
+.boton:hover {
+  background-color: #b6e3b8;
+}
+
 .carrito.boton {
   margin: 10px;
 }
@@ -197,29 +201,35 @@ button:hover {
   border-radius: 50%;
 }
 
+.titu1 {
+  text-align: center;
+}
+
 .producto.detalle {
   flex: 1;
   margin-right: 10px;
 }
 
 .carrito {
-  font-size: 12px;
-  width: 400px;
+  font-size: 1rem;
+  /*width: 400px;*/
   padding: 20px;
   border-left: 1px solid #ccc;
   background-color: #fff;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
   margin: 0px;
-  text-align: left;
+  text-align: center;
 }
+
+#carrito-lista {
+  text-align: right;
+}
+
 
 .items {
   margin-bottom: 0.5rem;
 }
 
-.btncarrito {
-  justify-self: end;
-}
 
 #notificaciones {
   display: flex;
@@ -264,4 +274,59 @@ button:hover {
   border-color: #2196f3;
   background-color: #e3f2fd;
   color: #0d47a1;
+}
+
+#btnLogout {
+  color: #C70D3A;
+}
+
+#btnLogout:hover {
+  background-color: #8f0a2b;
+  color: white;
+}
+
+#filtro_categoria_id {
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.btncarrito {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  justify-self: end;
+}
+
+.btncarrito img.icono-eliminar {
+  width: 20px;
+  height: 20px;
+  filter: grayscale(40%);
+  transition: transform 0.2s, filter 0.2s;
+}
+
+.btncarrito:hover img.icono-eliminar {
+  transform: scale(1.2);
+  filter: grayscale(0%);
+}
+
+.cantidadAgregar {
+  width: 80px;
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  text-align: center;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  outline: none;
+}
+
+.cantidadAgregar:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.cantidadAgregar::-webkit-inner-spin-button,
+.cantidadAgregar::-webkit-outer-spin-button {
+  height: auto;
 }

@@ -73,6 +73,7 @@ $html = '
 <head>
     <style>
         body { font-family: Arial, sans-serif; font-size: 12px; }
+        h1 { text-align: center; }
         h2 { text-align: center; }
         table { width: 100%; border-collapse: collapse; margin-top: 20px; }
         th, td { border: 1px solid #444; padding: 8px; text-align: center; }
@@ -80,6 +81,7 @@ $html = '
     </style>
 </head>
 <body>
+    <h1>Variedades Escobar</h1>
     <h2>Informe de Productos Vendidos</h2>
     <table>
         <thead>

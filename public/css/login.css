@@ -2,7 +2,7 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
     padding: 2rem;
-      margin: 0;
+    margin: 0;
     padding: 0;
 }
 
@@ -17,7 +17,7 @@ body {
 }
 
 input {
-    width: 100%;
+    width: 95%;
     padding: 10px;
     margin: 10px 0;
     border: none;
@@ -60,10 +60,10 @@ button:hover {
 
 .btnAzul {
     padding: 0.6rem 1.2rem;
-   background-color: #003300;
+    background-color: #003300;
     color: white;
     border: none;
-      border-radius: 20px;
+    border-radius: 20px;
     cursor: pointer;
     margin-top: 1rem;
 }
@@ -71,8 +71,9 @@ button:hover {
 .btnAzul:hover {
     background-color: #005000;
 }
-nav{
+
+nav {
     background-color: #005000;
     height: 50px;
-    
+
 }
