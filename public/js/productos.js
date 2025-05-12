@@ -19,6 +19,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const activarFecha = document.getElementById("activarFecha");
     activarFecha.addEventListener("change", toggleFecha);
+
+    document.getElementById('filtroFormProductos').addEventListener('submit', function (e) {
+        e.preventDefault(); // Evita la recarga de la página
+        cargarProductos(); // Llama a la función para cargar las ventas con los filtros aplicados
+    });
 });
 
 async function cargarCategorias() {
@@ -29,11 +34,21 @@ async function cargarCategorias() {
         const select = document.getElementById("categoria_id");
         select.innerHTML = "";
 
+        const select2 = document.getElementById("filtro_categoria_id");
+        select2.innerHTML = "";
+
         data.forEach(cat => {
             const option = document.createElement("option");
             option.value = cat.id;
             option.textContent = cat.nombre;
             select.appendChild(option);
+        });
+
+        data.forEach(cat => {
+            const option = document.createElement("option");
+            option.value = cat.id;
+            option.textContent = cat.nombre;
+            select2.appendChild(option);
         });
     } catch (error) {
         console.error("Error cargando categorías:", error);
@@ -80,6 +95,21 @@ async function cargarCategorias() {
 // }
 
 async function cargarProductos() {
+
+    const nombrePro = document.getElementById('filtro_nombre').value;
+    const skuPro = document.getElementById('filtro_sku');
+    const precioMin = document.getElementById('filtro_precio_min').value;
+    const precioMax = document.getElementById('filtro_precio_max').value;
+    const categoriaProd = document.getElementById('filtro_categoria_id').value;
+
+    const params = new URLSearchParams();
+    if (nombrePro) params.append('filtro_nombre', nombrePro);
+    if (skuPro) params.append('filtro_sku', skuPro);
+    if (precioMin) params.append('filtro_precio_min', precioMin);
+    if (precioMax) params.append('filtro_precio_max', precioMax);
+    if (categoriaProd) params.append('filtro_categoria', categoriaProd);
+
+
     try {
         const response = await fetch("../productos/read.php");
         const data = await response.json();
@@ -119,6 +149,24 @@ async function cargarProductos() {
     } catch (error) {
         console.error("Error cargando productos:", error);
     }
+}
+
+function mostrarProductos(productos) {
+
+
+    const contenedor = document.getElementById("lista-productos");
+    if (!contenedor) return;
+
+
+
+    if (productos.length === 0) {
+        contenedor.innerHTML = '<p>No se encontraron ventas.</p>';
+        return;
+    }
+
+    contenedor.innerHTML = ''; // Limpiar antes de agregar nuevas tarjetas
+
+
 }
 
 
