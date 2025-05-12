@@ -112,7 +112,7 @@ button {
 }
 
 button:hover {
-    background-color: #005000;
+    background-color: #9FC7A1;
 }
 
 .menu.navegacion {
@@ -132,13 +132,16 @@ button:hover {
   .boton {
     margin: 0 0.25em;
     padding: 8px 12px;
-    height: 100%;
     border: none;
     background-color: #F1F2ED;
     color: #021703;
     cursor: pointer;
     border-radius: 10px;
     border: 1px solid #2E2D1D;
+  }
+
+  .carrito.boton{
+    margin: 10px;
   }
 
   .boton.activo {
@@ -164,11 +167,11 @@ button:hover {
 
   .productos {
     flex: 1;
-    margin: 0;
+    margin: 0px;
     width: 80%;
     padding: 20px;
     overflow-y: auto;
-    background-color: #F1F2ED;
+    background-color: #fff;
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -177,23 +180,24 @@ button:hover {
   .producto.item {
     display: flex;
     align-items: center;
-    background-color: #A2AC82;
-    padding: 15px;
+    background-color: #9FC7A1;
+    margin: 0.5rem 0rem;
+    padding: 5px;
     border-radius: 10px;
     justify-content: space-between;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   }
   
   .producto.imagen {
-    width: 50px;
-    height: 50px;
-    background-color: #888;
+    width: 75px;
+    height: 75px;
+    margin-left: 10px;
     border-radius: 50%;
   }
   
   .producto.detalle {
     flex: 1;
-    margin-left: 15px;
+    margin-right: 10px;
   }
 
   .carrito {
@@ -201,8 +205,6 @@ button:hover {
     padding: 20px;
     border-left: 1px solid #ccc;
     background-color: #fff;
-    padding: 2rem;
-    border-radius: 8px;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
     margin: 0px;
     text-align: center;

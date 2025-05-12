@@ -23,15 +23,18 @@ verificarRol(['admin']);
 
 <body>
     <header>
-        <h1>Historial de ventas</h1>
-        <nav>
-            <a href="dashboard.php">Inicio</a>
-            <a href="vender.php">Registrar compra</a>
-            <a href="productos.php">Gestionar productos</a>
-            <a href="ventas.php">Informes de venta</a>
-            <a href="usuarios.php">Gestionar usuarios</a>
-            <button id="btnLogout" type="button">Cerrar Sesión</button>
-        </nav>
+        
+        <section class="menu navegacion">
+            <h1>Historial de ventas</h1>
+            <nav class="navegacion">
+                <a class="boton" href="dashboard.php">Inicio</a>
+                <a class="boton" href="vender.php">Registrar compra</a>
+                <a class="boton" href="productos.php">Gestionar productos</a>
+                <a class="boton activo" href="ventas.php">Informes de venta</a>
+                <a class="boton" href="usuarios.php">Gestionar usuarios</a>
+                <button class="boton" id="btnLogout" type="button">Cerrar Sesión</button>
+            </nav>
+        </section>
     </header>
 
     <main>
