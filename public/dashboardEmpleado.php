@@ -23,7 +23,7 @@ verificarRol(['admin', 'empleado']);
 <body>
     <header>
         <section class="menu navegacion">
-                <h1>Variedades Escobar</h1>
+            <h1>Variedades Escobar</h1>
             <nav class="navegacion">
                 <a class="boton activo" href="dashboardEmpleado.php">Inicio</a>
                 <a class="boton" href="venderEmpleado.php">Registrar compra</a>
@@ -40,8 +40,8 @@ verificarRol(['admin', 'empleado']);
         </div>
 
         <div class="card">
-            <h2>Panel de administración</h2>
-            <button>Gestionar productos</button>
+
+            <button id="venderEmpleado">Registrar compra</button>
         </div>
 
     </main>

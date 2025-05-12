@@ -43,8 +43,16 @@ verificarRol(['admin']);
         </div>
 
         <div class="card">
-            <h2>Panel de administración</h2>
-            <button>Gestionar productos</button>
+            <button id="vender">Registrar compra</button>
+        </div>
+
+        <div class="card">
+            <h2>Notificaciones</h2>
+            <div id="notificaciones">
+
+            </div>
+            <br>
+            <button id="productos">Gestionar productos</button>
         </div>
 
     </main>
