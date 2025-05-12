@@ -168,7 +168,6 @@ button:hover {
   .productos {
     flex: 1;
     margin: 0px;
-    width: 80%;
     padding: 20px;
     overflow-y: auto;
     background-color: #fff;
@@ -184,7 +183,7 @@ button:hover {
     margin: 0.5rem 0rem;
     padding: 5px;
     border-radius: 10px;
-    justify-content: space-between;
+    justify-content: center;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   }
   
@@ -201,11 +200,20 @@ button:hover {
   }
 
   .carrito {
-    width: 300px;
+    font-size: 12px;
+    width: 400px;
     padding: 20px;
     border-left: 1px solid #ccc;
     background-color: #fff;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
     margin: 0px;
-    text-align: center;
+    text-align: left;
+  }
+  
+  .items{
+margin-bottom: 0.5rem;
+  }
+
+  .btncarrito{
+    justify-self: end;
   }

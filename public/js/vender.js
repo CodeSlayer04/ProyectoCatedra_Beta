@@ -94,10 +94,11 @@ function actualizarCarrito() {
 
         const div = document.createElement("div");
         div.innerHTML = `
+            <section class="items">
             ${item.nombre} - ${item.cantidad} x $${item.precio_unitario} = $${subtotal.toFixed(2)}
-            <br>
-            <button class="boton" onclick="eliminarDelCarrito(${index})">Eliminar</button>
-        `;
+            <button class="boton btncarrito" onclick="eliminarDelCarrito(${index})">Eliminar</button>
+            </section>
+            `;
         contenedor.appendChild(div);
     });
 
