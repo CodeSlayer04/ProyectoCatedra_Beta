@@ -28,14 +28,15 @@ $sql = "
         p.precio_compra,
         p.precio_venta,
         SUM(dv.cantidad) AS cantidad_total,
-        SUM(dv.cantidad * (p.precio_venta - p.precio_compra)) AS ganancia_total
+        SUM(dv.cantidad * (p.precio_venta - p.precio_compra)) AS ganancia_total,
+        SUM(dv.cantidad * p.precio_venta) AS total_precio_venta,
+        SUM(dv.cantidad * p.precio_compra) AS total_precio_compra
     FROM detalle_ventas dv
     JOIN productos p ON dv.producto_id = p.id
     JOIN ventas v ON dv.venta_id = v.id
     JOIN usuarios u ON v.usuario_id = u.id
     WHERE 1=1
 ";
-
 
 $params = [];
 
@@ -87,6 +88,8 @@ $html = '
                 <th>Precio Compra</th>
                 <th>Precio Venta</th>
                 <th>Cantidad Vendida</th>
+                <th>T.P Venta</th>
+                <th>T.P Compra</th>
                 <th>Ganancia</th>
             </tr>
         </thead>
@@ -94,6 +97,8 @@ $html = '
 
 $totalGanancia = 0;
 $totalCantidad = 0;
+$totalVenta = 0;
+$totalCompra = 0;
 
 foreach ($datos as $fila) {
     $html .= '<tr>
@@ -101,11 +106,15 @@ foreach ($datos as $fila) {
         <td>$' . number_format($fila['precio_compra'], 2) . '</td>
         <td>$' . number_format($fila['precio_venta'], 2) . '</td>
         <td>' . $fila['cantidad_total'] . '</td>
+        <td>$' . number_format($fila['total_precio_venta'], 2) . '</td>
+        <td>$' . number_format($fila['total_precio_compra'], 2) . '</td>
         <td>$' . number_format($fila['ganancia_total'], 2) . '</td>
     </tr>';
 
     $totalGanancia += $fila['ganancia_total'];
     $totalCantidad += $fila['cantidad_total'];
+    $totalVenta += $fila['total_precio_venta'];
+    $totalCompra += $fila['total_precio_compra'];
 }
 
 $html .= '
@@ -114,6 +123,8 @@ $html .= '
             <tr>
                 <th colspan="3">Totales</th>
                 <th>' . $totalCantidad . '</th>
+                <th>$' . number_format($totalVenta, 2) . '</th>
+                <th>$' . number_format($totalCompra, 2) . '</th>
                 <th>$' . number_format($totalGanancia, 2) . '</th>
             </tr>
         </tfoot>
@@ -123,12 +134,13 @@ $html .= '
 
 // Crear y renderizar el PDF con Dompdf
 $options = new Options();
-$options->set('isHtml5ParserEnabled', true); // Habilitar soporte HTML5
-$options->set('isPhpEnabled', true); // Habilitar PHP en el HTML (si es necesario)
-$options->set('isRemoteEnabled', true); // Permite cargar recursos remotos
+$options->set('isHtml5ParserEnabled', true);
+$options->set('isPhpEnabled', true);
+$options->set('isRemoteEnabled', true);
+
 $dompdf = new Dompdf($options);
-$dompdf->loadHtml($html); // Cargar el HTML generado
-$dompdf->setPaper('A4', 'portrait'); // Establecer el tamaño de papel y la orientación
-$dompdf->render(); // Renderizar el PDF
-$dompdf->stream("informe_ventas.pdf", ["Attachment" => false]); // Enviar al navegador sin descargar
+$dompdf->loadHtml($html);
+$dompdf->setPaper('A4', 'portrait');
+$dompdf->render();
+$dompdf->stream("informe_ventas.pdf", ["Attachment" => false]);
 ?>
