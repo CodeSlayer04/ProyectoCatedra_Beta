@@ -61,7 +61,9 @@ verificarRol(['admin']);
             <input type="number" id="venta_id" name="venta_id" placeholder="ID de venta">
 
             <button type="submit">Aplicar filtros</button>
+            <button type="button" id="limpiarFiltros">Limpiar filtros</button>
         </form>
+
 
         <div style="display: flex; justify-content: center; margin-top: 2rem;">
             <button id="btnGenerarInforme">Generar informe de ventas</button>

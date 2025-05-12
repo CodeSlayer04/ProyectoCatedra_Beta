@@ -19,7 +19,7 @@ if (!isset($_SESSION['usuario'])) {
 
 <body>
     <header>
-        
+
         <section class="menu navegacion">
             <h1>Variedades Escobar</h1>
             <nav class="navegacion">
@@ -33,6 +33,8 @@ if (!isset($_SESSION['usuario'])) {
         <div class="card">
             <h2 id="bienvenida">No está autorizado a ingresar a esta página</h2>
             <p id="rol">Acceso no autorizado</p>
+            <br>
+            <a class="boton" href="dashboardEmpleado.php" style="text-decoration: none;">Volver</a>
         </div>
 
     </main>

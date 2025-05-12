@@ -18,6 +18,7 @@ verificarRol(['admin', 'empleado']);
     <meta charset="UTF-8">
     <title>Atender compra</title>
     <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/DiseñoProductos.css">
 </head>
 
 <body>
@@ -62,7 +63,10 @@ verificarRol(['admin', 'empleado']);
 
     <section class="cuerpo">
         <section class="card productos">
-            <section id="lista-productos">Cargando...</section>
+            <div class="card-productos">
+                <h1>Productos registrados</h1>
+                <div id="lista-productos">Cargando...</div>
+            </div>
         </section>
         <section class="card carrito">
             <h2>Carrito de compras</h2>

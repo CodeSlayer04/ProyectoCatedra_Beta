@@ -54,6 +54,19 @@ async function cargarHistorialVentas() {
 document.getElementById('filtroForm').addEventListener('submit', function (e) {
     e.preventDefault(); // Evita la recarga de la página
     cargarVentas(); // Llama a la función para cargar las ventas con los filtros aplicados
+
+    document.getElementById('limpiarFiltros').addEventListener('click', function (e) {
+        e.preventDefault();
+        // Limpiar todos los inputs
+        document.getElementById('fecha_inicio').value = '';
+        document.getElementById('fecha_fin').value = '';
+        document.getElementById('usuario').value = '';
+        document.getElementById('metodo_pago').value = '';
+        document.getElementById('venta_id').value = '';
+
+        // Cargar todos los productos sin filtros
+        cargarVentas();
+    });
 });
 
 document.getElementById('btnGenerarInforme').addEventListener('click', function () {

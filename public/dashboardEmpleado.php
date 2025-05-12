@@ -27,7 +27,7 @@ verificarRol(['admin', 'empleado']);
             <nav class="navegacion">
                 <a class="boton activo" href="dashboardEmpleado.php">Inicio</a>
                 <a class="boton" href="venderEmpleado.php">Registrar compra</a>
-                <button id="btnLogout" type="button">Cerrar Sesión</button>
+                <button class="boton" id="btnLogout" type="button">Cerrar Sesión</button>
             </nav>
         </section>
     </header>
