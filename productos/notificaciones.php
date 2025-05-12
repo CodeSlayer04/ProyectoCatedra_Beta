@@ -28,12 +28,12 @@ $porCaducar = $stmtCaduca->fetchAll(PDO::FETCH_ASSOC);
 $notificaciones = [];
 
 foreach ($bajoStock as $prod) {
-    $notificaciones[] = "⚠️ <strong>{$prod['nombre']}</strong> (SKU: <code>{$prod['sku']}</code>, Categoría: {$prod['categoria']}) tiene stock bajo: <strong>{$prod['stock']}</strong>";
+    $notificaciones[] = "<strong>{$prod['nombre']}</strong> (SKU: <code>{$prod['sku']}</code>, Categoría: {$prod['categoria']}) tiene stock bajo: <strong>{$prod['stock']}</strong>";
 }
 
 foreach ($porCaducar as $prod) {
     $fecha = date("d/m/Y", strtotime($prod['fecha_caducidad']));
-    $notificaciones[] = "⏳ <strong>{$prod['nombre']}</strong> (SKU: <code>{$prod['sku']}</code>, Categoría: {$prod['categoria']}) caduca pronto: <strong>{$fecha}</strong>";
+    $notificaciones[] = "<strong>{$prod['nombre']}</strong> (SKU: <code>{$prod['sku']}</code>, Categoría: {$prod['categoria']}) caduca pronto: <strong>{$fecha}</strong>";
 }
 
 echo json_encode($notificaciones);

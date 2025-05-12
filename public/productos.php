@@ -90,10 +90,10 @@ verificarRol(['admin']);
                     <input type="text" name="descripcion" id="descripcion" placeholder="Detalles">
                     <input type="text" id="sku" name="sku" placeholder="SKU" required>
                     <input type="number" id="precio_compra" name="precio_compra" placeholder="Precio de compra" required
-                        step="0.01">
+                        step="0.01" min="0">
                     <input type="number" id="precio_venta" name="precio_venta" placeholder="Precio de venta" required
-                        step="0.01">
-                    <input type="number" id="stock" name="stock" placeholder="Stock" required>
+                        step="0.01" min="0">
+                    <input type="number" id="stock" name="stock" placeholder="Stock" required min="1">
                     <div class="checkbox-group">
                         <label for="activarFecha">Tiene caducidad</label><input type="checkbox" name="activarFecha"
                             id="activarFecha">
