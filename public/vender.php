@@ -44,12 +44,13 @@ verificarRol(['admin']);
 
     <section class="cuerpo">
         <section class="card productos">
-            <h2>Productos registrados</h2>
             <section id="lista-productos">Cargando...</section>
         </section>
         <section class="card carrito">
             <h2>Carrito de compras</h2>
+            <section>
             <div id="carrito-lista"></div>
+            </section>
             <p><strong>Total: $<span id="total">0.00</span></strong></p>
             <label for="metodo_pago">Método de pago:</label>
             <select id="metodo_pago">
@@ -59,7 +60,7 @@ verificarRol(['admin']);
                 <option value="otro">Otro</option>
             </select>
             <br>
-            <button id="btnFinalizarVenta">Finalizar Venta</button>
+            <button class="boton" id="btnFinalizarVenta">Finalizar Venta</button>
         </section>
     </section>
 

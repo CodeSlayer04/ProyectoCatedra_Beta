@@ -19,11 +19,14 @@ if (!isset($_SESSION['usuario'])) {
 
 <body>
     <header>
-        <h1>Variedades Escobar</h1>
-        <nav>
-            <a href="dashboardEmpleado.php">Volver</a>
-            <button id="btnLogout" type="button">Cerrar Sesión</button>
-        </nav>
+        
+        <section class="menu navegacion">
+            <h1>Variedades Escobar</h1>
+            <nav class="navegacion">
+                <a class="boton activo" href="dashboardEmpleado.php">Volver</a>
+                <button class="boton" id="btnLogout" type="button">Cerrar Sesión</button>
+            </nav>
+        </section>
     </header>
     <main>
 

@@ -37,15 +37,21 @@ async function cargarProductos() {
             div.classList.add("producto");
 
   div.innerHTML = `
-    <h3>${prod.nombre}</h3>
-    <p><strong>Precio Venta:</strong> $${prod.precio_venta}</p>
-    <p><strong>Disponibles:</strong> ${prod.stock}</p>
-    ${prod.imagen ? `<img src="imagenes/${prod.imagen}" alt="${prod.nombre}" width="100">` : ''}
-    <br>
-    ${prod.stock > 0 ? `
+
+    <section class="producto item">
+        <section class="producto imagen">
+        ${prod.imagen ? `<img class="producto imagen" src="imagenes/${prod.imagen}" alt="${prod.nombre}" width="100">` : ''}
+        </section>
+        <section class="producto detalle">
+          <p class="producto detalle nombre"><strong>${prod.nombre}</strong></p>
+          <p class="producto detalle precio"><strong>Precio:</strong> $${prod.precio_venta}</p>
+            <p><strong>Disponibles:</strong> ${prod.stock}</p>
+          </section>
+        ${prod.stock > 0 ? `
         <input type='number' min='1' max='${prod.stock}' placeholder='Cantidad' id='cantidad-${prod.id}' value='1' step='1'>
-        <button onclick='agregarAlCarrito(${JSON.stringify(prod).replace(/'/g, "\\'")})'>Agregar al carrito</button>
+        <button class="boton producto agregar" onclick='agregarAlCarrito(${JSON.stringify(prod).replace(/'/g, "\\'")})'>Agregar al carrito</button>
     ` : `<p style="color:red;"><strong>Sin stock disponible</strong></p>`}
+      </section>
 `;
             contenedor.appendChild(div);
         });
@@ -89,7 +95,8 @@ function actualizarCarrito() {
         const div = document.createElement("div");
         div.innerHTML = `
             ${item.nombre} - ${item.cantidad} x $${item.precio_unitario} = $${subtotal.toFixed(2)}
-            <button onclick="eliminarDelCarrito(${index})">Eliminar</button>
+            <br>
+            <button class="boton" onclick="eliminarDelCarrito(${index})">Eliminar</button>
         `;
         contenedor.appendChild(div);
     });
