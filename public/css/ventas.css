@@ -38,7 +38,7 @@
  text-align: center;
  border: #ccc;
  border-radius: 8px;
- background-color: #a2ac82;
+ background-color: #9FC7A1;
 }
 
 .venta-card {
@@ -69,7 +69,7 @@
 .venta-card .btn-detalle {
     padding: 8px 12px;
     cursor: pointer;
- background-color: #a2ac82;
+ background-color: #0b3d0b;
     color: white;
     border: none;
     border-radius: 5px;
@@ -80,7 +80,7 @@
 
 /* Cambio de color al pasar el mouse por encima del botón */
 .venta-card .btn-detalle:hover {
-    background-color: #5b6d49;
+    background-color: #003300;
 }
 
 #venta-slides {
@@ -139,7 +139,7 @@
 button {
     margin-top: 1rem;
     padding: 10px 20px;
-  background-color: #a2ac82;
+  background-color: #0b3d0b;
     color: white;
     border: none;
     border-radius: 4px;
@@ -147,7 +147,7 @@ button {
 }
 
 button:hover {
-    background-color: #5b6d49;
+    background-color: #003300;
 }
 
 .btn-imprimir{
@@ -156,7 +156,7 @@ button:hover {
   border: none; 
   border-radius: 4px; 
   cursor: pointer;
-  background-color: #a2ac82;
+  background-color: #0b3d0b;
 }
 
 /* Estilo para el contenedor de errores */
