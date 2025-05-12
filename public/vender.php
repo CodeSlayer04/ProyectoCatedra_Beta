@@ -48,12 +48,10 @@ verificarRol(['admin']);
         </section>
         <section class="card carrito">
             <h2>Carrito de compras</h2>
-            <section>
             <div id="carrito-lista"></div>
-            </section>
             <p><strong>Total: $<span id="total">0.00</span></strong></p>
             <label for="metodo_pago">Método de pago:</label>
-            <select id="metodo_pago">
+            <select id="metodo_pago" style="margin-bottom: 0.5rem;">
                 <option value="efectivo">Efectivo</option>
                 <option value="tarjeta">Tarjeta</option>
                 <option value="transferencia">Transferencia</option>
