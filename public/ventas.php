@@ -63,6 +63,10 @@ verificarRol(['admin']);
             <button type="submit">Aplicar filtros</button>
         </form>
 
+             <div style="display: flex; justify-content: center; margin-top: 2rem;">
+            <button id="btnGenerarInforme">Generar Informe</button>
+            </div>
+
         <hr>
 <div class="detalle-card">
   <h2 id="titulo-ventas">Listado de ventas realizadas</h2>
@@ -79,10 +83,7 @@ verificarRol(['admin']);
 <div id="sidebar-detalles" class="sidebar"></div>
         </div>
 
-       <div style="display: flex; justify-content: center; margin-top: 2rem;">
-    <button id="btnGenerarInforme">Generar Informe</button>
-
-</div>
+  
 
     </main>
 
